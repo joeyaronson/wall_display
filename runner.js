@@ -22,7 +22,7 @@ setInterval(() => {
         randomPath = ranChoice(paths)
     } while (location.href.includes(randomPath))
     location.href = `../${randomPath}/index.html`
-}, 200000);
+}, 3600000);
 
 const ranChoice = (items) => items[Math.floor(Math.random() * items.length)]
 
