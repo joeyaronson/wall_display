@@ -35,6 +35,8 @@ function draw() {
         part = p.length;
         fr = floor(frameRate());
     }
+
+    //debug
     // text("particles: "+part,20,30);
     // text("framerate: " +fr,20,60);
 
@@ -46,7 +48,7 @@ class Particle {
         this.y = y;
         this.ax = random(-0.03, 0.03);
         this.ay = random(-0.03, 0.03);
-        this.h = globalColor;
+        this.h = random(0,100);
     }
 
     display() {
@@ -79,7 +81,7 @@ class Particle {
             this.y += ay * ds;
         }
         else {
-            this.h = globalColor;
+            // this.h = globalColor;
             if (d < 100) {
                 let rs = map(d, 100, 0, 3, 0.5);
                 this.x -= ax * rs;
