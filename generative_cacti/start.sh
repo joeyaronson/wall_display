@@ -1,2 +1,2 @@
 export DISPLAY=:0;
-chromium-browser --kiosk --disable-infobar /home/pi/Documents/generative_cacti/index.html
+chromium-browser --kiosk --disable-infobar /home/pi/wall_display/generative_cacti/index.html
