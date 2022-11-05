@@ -1,2 +1,2 @@
 export DISPLAY=:0;
-chromium-browser --kiosk --disable-infobar /home/pi/Documents/boxes/index.html
+chromium-browser --kiosk --disable-infobar /home/pi/wall_display/boxes/index.html
