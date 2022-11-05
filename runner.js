@@ -1,7 +1,6 @@
 
 const paths = ["boxes", "generative_cacti", "void", "fireflies", "graph", "wiggles"]
 setInterval(() => {
-    console.log("here")
     let randomPath
     do{
     randomPath = ranChoice(paths)

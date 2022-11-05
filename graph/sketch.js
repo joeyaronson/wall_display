@@ -16,7 +16,7 @@ function draw() {
   updateNodes();
 }
 
-const restart = () =>{
+restart = () =>{
   background(0)
   n = [];
   loadNodes();
