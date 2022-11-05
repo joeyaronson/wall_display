@@ -2,7 +2,7 @@ setup = () => {
 	createCanvas(720, 1280, WEBGL);
 	rectMode(CENTER);
 	angleMode(DEGREES);
-	SIZE = width / 40;
+	SIZE = width / 30;
 	loadTiles();
 	colorMode(HSB, 360);
 }
