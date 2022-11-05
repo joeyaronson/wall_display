@@ -51,10 +51,10 @@ function draw() {
     }
     
     //debug
-    fill(255,0,255);
-    textSize(50);
-    text("phase: "+phase +"\n next: "+next,50,50);
-    text("c: "+c,100,100);
+    // fill(255,0,255);
+    // textSize(50);
+    // text("phase: "+phase +"\n next: "+next,50,50);
+    // text("c: "+c,100,100);
    
 
 }
