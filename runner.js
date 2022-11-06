@@ -10,6 +10,7 @@ const paths = [
     "graph",
     "grid",
     "matrix",
+    "orb",
     "sin",
     "tiedye",
     "void",
