@@ -64,6 +64,6 @@ function loadParticles() {
       new Particle(width / 2 + sin(i) * 200, height / 2 + cos(i) * 200, i)
     );
   }
-  noiseVal = random(0.008, 0.02);
+  noiseVal = random(0.0008, 0.02);
   offset = random(360);
 }
