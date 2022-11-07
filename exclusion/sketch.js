@@ -117,9 +117,9 @@ class node {
 
   //moves the nodes in circular motion
   move() {
-    this.a += 0.05;
-    this.x = this.x + sin(this.a) * 0.125;
-    this.y = this.y + cos(this.a) * 0.125;
+    this.a += 0.1;
+    this.x = this.x + sin(this.a) * 0.25;
+    this.y = this.y + cos(this.a) * 0.25;
   }
 
   //draws the nodes
