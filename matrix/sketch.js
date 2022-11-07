@@ -1,6 +1,6 @@
 function setup() {
 	createCanvas(720,1280);
-    textSize(40);
+    textSize(60);
 		textFont("Courier New");
 
     textAlign(RIGHT);
@@ -14,12 +14,12 @@ let chars = ["$","@","B","%","8","&","W","M","#","*","o","a","h","k","b","d","p"
                 ,"u","n","x","r","j","f","t","/","\\","|","(",")","1","{","}","["
                 ,"]","?","-","_","+","~","<",">","i","!","l","I",";",":",",","^","`","."," "
                 ];
-let noiseScale=0.09
+let noiseScale=0.1
 function draw() {
      background(0,30);
-    for(let i  = -10; i <= 40; i++){
-        for(let j = -40; j <= 80; j++){
-            translate(i*40,j*40)
+    for(let i  = -10; i <= 60; i++){
+        for(let j = -60; j <= 100; j++){
+            translate(i*60,j*60)
             let noiseVal = noise(i*noiseScale, j*noiseScale, frameCount*0.009);
 
             let ch2 = map(noiseVal,0,1,0,chars.length);

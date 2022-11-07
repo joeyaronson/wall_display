@@ -13,6 +13,7 @@ const paths = [
     "matrix",
     "orb",
     "sin",
+    "swarm",
     "tiedye",
     "void",
     "wave",
