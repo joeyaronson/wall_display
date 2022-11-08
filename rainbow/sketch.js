@@ -59,7 +59,6 @@ class Tile {
         BOX_SIZE *
         10 -
       BOX_SIZE / 3;
-    let col = map(zHeight, 0, BOX_SIZE * 10 - BOX_SIZE, 0, 200);
     specularMaterial((zHeight + frameCount / 2) % 100, 100, 100);
 
     translate(

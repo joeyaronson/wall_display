@@ -10,6 +10,7 @@ const paths = [
     "flower",
     "graph",
     "grid",
+    "mandala",
     "matrix",
     "orb",
     "rainbow",
