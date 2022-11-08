@@ -3,6 +3,7 @@ const paths = [
     "balls",
     "boxes",
     "cacti",
+    "cells",
     "cubes",
     "drip",
     "exclusion",
