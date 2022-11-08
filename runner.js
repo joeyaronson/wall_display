@@ -2,22 +2,23 @@
 const paths = [
     "balls",
     "boxes",
+    "cacti",
     "cubes",
     "drip",
     "exclusion",
     "fireflies",
     "flower",
-    "cacti",
     "graph",
     "grid",
     "matrix",
     "orb",
+    "rainbow",
     "sin",
     "swarm",
     "tiedye",
     "void",
     "wave",
-    "wiggles"
+    "wiggles",
 ]
 setInterval(() => {
     let randomPath
