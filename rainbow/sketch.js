@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(720, 1000, WEBGL);
+  createCanvas(720, 1280, WEBGL);
   colorMode(HSB, 100);
   angleMode(DEGREES);
   loadTiles();
