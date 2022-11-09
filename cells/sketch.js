@@ -101,7 +101,7 @@ function setup() {
 	}
 	display() {
 	  if (this.o === 1) {
-		fill(this.lifeSpan % 100, 100, 100);
+		fill((this.lifeSpan+frameCount) % 100, 100, 100);
 	  } else {
 		fill(0, 10);
 	  }
