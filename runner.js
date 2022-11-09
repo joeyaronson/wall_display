@@ -23,12 +23,36 @@ const paths = [
     "wiggles",
 ]
 setInterval(() => {
+    if (isArtPage) {
+        choosePage();
+    }
+}, 3600000);
+
+setInterval(() => {
+    let d = new Date();
+    if (d.getHours === 0 && isArtPage()) {
+        location.href = `../sleep.html`
+    }
+}, 1000);
+
+setInterval(() => {
+    let d = new Date();
+    if (d.getHours === 9 && !isArtPage()) {
+        choosePage(true);
+    }
+}, 1000);
+
+const ranChoice = (items) => items[Math.floor(Math.random() * items.length)]
+
+
+const choosePage = (sleep) => {
     let randomPath
     do {
         randomPath = ranChoice(paths)
     } while (location.href.includes(randomPath))
-    location.href = `../${randomPath}/index.html`
-}, 3600000);
+    location.href = `${sleep ? "." : ".."}/${randomPath}/index.html`
+}
 
-const ranChoice = (items) => items[Math.floor(Math.random() * items.length)]
-
+const isArtPage = () => {
+    return paths.some(x => location.href.includes(x))
+}
