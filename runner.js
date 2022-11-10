@@ -32,15 +32,15 @@ setInterval(() => {
 setInterval(() => {
     let d = new Date();
     console.log("checking")
-    if (d.getHours() === 0 && isArtPage()) {
+    if ( isArtPage()) {
         location.href = `../sleep.html`
     }
-}, 60000);
+}, 1000);
 
 setInterval(() => {
     let d = new Date();
     console.log(d.getHours())
-    if (d.getHours() === 10 && !isArtPage()) {
+    if (!isArtPage()) {
         choosePage(true);
     }
 }, 1000);
