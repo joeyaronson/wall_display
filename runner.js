@@ -31,17 +31,17 @@ setInterval(() => {
 
 setInterval(() => {
     let d = new Date();
-    if (d.getHours === 0 && isArtPage()) {
+    if (d.getHours() === 0 && isArtPage()) {
         location.href = `../sleep.html`
     }
-}, 1000);
+}, 600000);
 
 setInterval(() => {
     let d = new Date();
-    if (d.getHours === 9 && !isArtPage()) {
+    if (d.getHours() === 9 && !isArtPage()) {
         choosePage(true);
     }
-}, 1000);
+}, 600000);
 
 const ranChoice = (items) => items[Math.floor(Math.random() * items.length)]
 
