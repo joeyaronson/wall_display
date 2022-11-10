@@ -39,10 +39,11 @@ setInterval(() => {
 
 setInterval(() => {
     let d = new Date();
-    if (d.getHours() === 9 && !isArtPage()) {
+    console.log(d.getHours())
+    if (d.getHours() === 10 && !isArtPage()) {
         choosePage(true);
     }
-}, 600000);
+}, 1000);
 
 const ranChoice = (items) => items[Math.floor(Math.random() * items.length)]
 
