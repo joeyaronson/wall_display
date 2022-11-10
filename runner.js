@@ -32,18 +32,18 @@ setInterval(() => {
 setInterval(() => {
     let d = new Date();
     console.log("checking")
-    if ( isArtPage()) {
+    if (d.getHours() === 0 && isArtPage()) {
         location.href = `../sleep.html`
     }
-}, 1000);
+}, 60000);
 
 setInterval(() => {
     let d = new Date();
     console.log(d.getHours())
-    if (!isArtPage()) {
+    if (d.getHours() === 10 && !isArtPage()) {
         choosePage(true);
     }
-}, 1000);
+}, 10000);
 
 const ranChoice = (items) => items[Math.floor(Math.random() * items.length)]
 
