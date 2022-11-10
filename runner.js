@@ -35,7 +35,7 @@ setInterval(() => {
     if (d.getHours() === 0 && isArtPage()) {
         location.href = `../sleep.html`
     }
-}, 10000);
+}, 60000);
 
 setInterval(() => {
     let d = new Date();
