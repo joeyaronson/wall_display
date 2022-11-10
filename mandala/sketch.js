@@ -83,7 +83,7 @@ function draw() {
   g += g2;
   b += b2;
   
-  if(frameCount %8000 === 0){
+  if(frameCount %20000 === 0){
     background(0)
     setVars();
   }
