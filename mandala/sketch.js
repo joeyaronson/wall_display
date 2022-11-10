@@ -3,22 +3,25 @@ function setup() {
   createCanvas(720, 1280);
 
   background(0);
+  modes = [ellipse, rect]
   setVars();
   noFill();
 }
 
-var x; //starting x variable for box
-var y; //starting y variable for box
-var dx;
-var dy;
-var r;
-var g;
-var b;
-var r2;
-var g2;
-var b2;
+let x;
+let y;
+let dx;
+let dy;
+let r;
+let g;
+let b;
+let r2;
+let g2;
+let b2;
+let modes;
+let mode;
 
-const setVars = () => {
+function setVars() {
   x = width / 2;
   y = height / 2;
   dx = random(50, width - 50);
@@ -29,16 +32,17 @@ const setVars = () => {
   r2 = random(1, 3);
   g2 = random(1, 3);
   b2 = random(1, 3);
+  mode = random(modes);
 };
 
 function draw() {
   stroke(r, g, b); //set box stroke to r,g,b color
   strokeWeight(3); //set strokeWeight of box
-  // fill(255,10);				//semi transparent fill for box
-  rect(x, y, 50, 50); //first box
-  rect(width - x, y, 50, 50); //second box
-  rect(x, height - y, 50, 50); //third box
-  rect(width - x, height - y, 50, 50); //fourth box
+  fill(255, 10);				//semi transparent fill for box
+  mode(x, y, 50, 50); //first box
+  mode(width - x, y, 50, 50); //second box
+  mode(x, height - y, 50, 50); //third box
+  mode(width - x, height - y, 50, 50); //fourth box
 
   if (x < dx) {
     //moves x towards dx in positive direction
@@ -82,8 +86,8 @@ function draw() {
   r += r2; //increment colors
   g += g2;
   b += b2;
-  
-  if(frameCount %20000 === 0){
+
+  if (frameCount % 20000 === 0) {
     background(0)
     setVars();
   }
