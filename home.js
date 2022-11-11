@@ -40,8 +40,6 @@ const paths = [
   }
   
   const loadPages = () => {
-    let x = map(212, 0, 360, 0, 100);
-    print(x);
     let row = 0;
   
     for (let i = 0; i < paths.length; i++) {

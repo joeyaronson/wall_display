@@ -23,7 +23,7 @@ const paths = [
     "wiggles",
 ]
 setInterval(() => {
-    if (isArtPage) {
+    if (isArtPage()) {
         choosePage();
     }
 }, 3600000);
