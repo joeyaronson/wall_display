@@ -44,6 +44,16 @@ setInterval(() => {
     }
 }, 10000);
 
+document.addEventListener('keyup', (e) => {
+    console.log(e.code)
+    if (e.code === "F21") {
+        location.href = `../home.html`
+    } else if (["F22", "F23"].includes(e.code)) {
+        choosePage();
+    }
+
+});
+
 const ranChoice = (items) => items[Math.floor(Math.random() * items.length)]
 
 
