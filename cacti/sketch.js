@@ -13,6 +13,8 @@ let startAngle;
 let minute;
 let startMin;
 let bg;
+const INTERACTION_KEY = 135;
+
 function draw() {
   background(bg, 30, 100);
   camera(600, -20, 100, 0, 0, 0, 0.25, 1, 0.05);
@@ -39,7 +41,6 @@ function draw() {
   c.draw();
   let minutes = Math.round(Date.now() / minute);
   if (currentMin !== minutes) {
-
     loadCacti();
     currentMin = minutes;
   }
@@ -52,9 +53,10 @@ function loadCacti() {
 }
 
 function keyPressed() {
-  loadCacti();
+  if (keyCode === INTERACTION_KEY) {
+    loadCacti();
+  }
 }
-
 
 class Cactus {
   constructor(x, y) {
@@ -66,7 +68,7 @@ class Cactus {
     this.ribWidth = random(10, 40);
     this.ribCount = parseInt(random(2, 5)) * 2;
     this.areoleCount = parseInt(random(5, 20));
-    this.ribShape = floor(random(4, 10))
+    this.ribShape = floor(random(4, 10));
     this.areoleSize = random(2, 5);
     this.aOffset = random(2, 10);
     // cac colors

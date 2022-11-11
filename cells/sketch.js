@@ -4,6 +4,17 @@ function setup() {
 	loadTiles();
 	noStroke();
   }
+  const INTERACTION_KEY = 135;
+  
+  function keyPressed() {
+	if (keyCode === INTERACTION_KEY) {
+	  t = [];
+	  staticCounter = 0;
+	  frameBuffer = [];
+	  loadTiles();
+	  background(0);
+	}
+  }
   
   function draw() {
 	background(0, 10);
@@ -31,11 +42,11 @@ function setup() {
 	}
   
 	if (staticCounter > 100) {
-	  t= [];
+	  t = [];
 	  staticCounter = 0;
 	  frameBuffer = [];
 	  loadTiles();
-	  background(0)
+	  background(0);
 	}
   }
   
@@ -101,7 +112,7 @@ function setup() {
 	}
 	display() {
 	  if (this.o === 1) {
-		fill((this.lifeSpan+frameCount) % 100, 100, 100);
+		fill((this.lifeSpan + frameCount) % 100, 100, 100);
 	  } else {
 		fill(0, 10);
 	  }

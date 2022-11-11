@@ -62,6 +62,7 @@ let countChoices = [
   180
 ]
 let count;
+const INTERACTION_KEY = 135;
 
 function draw() {
   //default blend mode
@@ -84,6 +85,12 @@ function restart() {
   nodes = [];
   makeNodes();
 
+}
+
+function keyPressed() {
+  if (keyCode === INTERACTION_KEY) {
+    restart()
+  }
 }
 
 //fills the nodes array with the nodes

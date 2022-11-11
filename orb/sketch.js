@@ -10,14 +10,20 @@ function setup() {
 let noiseVal;
 let p = [];
 let offset;
+const INTERACTION_KEY = 135;
 
+function keyPressed() {
+  if (keyCode === INTERACTION_KEY) {
+    restart();
+  }
+}
 function draw() {
   for (let i = 0; i < p.length; i++) {
     p[i].move();
     p[i].display();
   }
-  
-  if (p.every(x => x.burnt)) {
+
+  if (p.every((x) => x.burnt)) {
     restart();
   }
 }
@@ -26,16 +32,14 @@ const restart = () => {
   background(0);
   p = [];
   loadParticles();
-}
-
-
+};
 
 class Particle {
   constructor(x, y, i) {
     this.x = x;
     this.y = y;
     this.i = i;
-    this.burnt = false
+    this.burnt = false;
   }
 
   move() {
@@ -52,7 +56,12 @@ class Particle {
     let h = map(this.n, 0, 1, -50, 410);
     stroke((d / 1.5 + h + offset) % 360, 360, 360);
     point(this.x, this.y);
-    if (this.y > height + 50 || this.y < -50 || this.x > width +50  || this.x < -50) {
+    if (
+      this.y > height + 50 ||
+      this.y < -50 ||
+      this.x > width + 50 ||
+      this.x < -50
+    ) {
       this.burnt = true;
     }
   }

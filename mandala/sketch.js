@@ -3,7 +3,7 @@ function setup() {
   createCanvas(720, 1280);
 
   background(0);
-  modes = [ellipse, rect]
+  modes = [ellipse, rect];
   setVars();
   noFill();
 }
@@ -20,8 +20,16 @@ let g2;
 let b2;
 let modes;
 let mode;
+const INTERACTION_KEY = 135;
 
+function keyPressed() {
+  if (keyCode === INTERACTION_KEY) {
+    setVars();
+  }
+}
 function setVars() {
+  background(0);
+
   x = width / 2;
   y = height / 2;
   dx = random(50, width - 50);
@@ -33,12 +41,12 @@ function setVars() {
   g2 = random(1, 3);
   b2 = random(1, 3);
   mode = random(modes);
-};
+}
 
 function draw() {
   stroke(r, g, b); //set box stroke to r,g,b color
   strokeWeight(3); //set strokeWeight of box
-  fill(255, 10);				//semi transparent fill for box
+  fill(255, 10); //semi transparent fill for box
   mode(x, y, 50, 50); //first box
   mode(width - x, y, 50, 50); //second box
   mode(x, height - y, 50, 50); //third box
@@ -88,7 +96,6 @@ function draw() {
   b += b2;
 
   if (frameCount % 20000 === 0) {
-    background(0)
     setVars();
   }
 }

@@ -9,23 +9,27 @@ function setup() {
 
 let noiseVal = 0.009;
 let p = [];
-
+const INTERACTION_KEY = 135;
+function keyPressed() {
+  if (keyCode === INTERACTION_KEY) {
+    restart();
+  }
+}
 function draw() {
   for (let i = 0; i < p.length; i++) {
     p[i].move();
     p[i].display();
   }
-  if (p.every(x => x.burnt)) {
+  if (p.every((x) => x.burnt)) {
     restart();
   }
-
 }
 
 const restart = () => {
   background(0);
   p = [];
   loadParticles();
-}
+};
 
 class Particle {
   constructor(x, y) {
@@ -57,5 +61,4 @@ function loadParticles() {
   for (let i = 0; i < width; i += 0.5) {
     p.push(new Particle(i, 0));
   }
-
 }

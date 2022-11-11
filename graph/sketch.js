@@ -1,8 +1,8 @@
 function setup() {
   createCanvas(720, 1280);
   strokeWeight(0.1);
-  colorMode(HSB, 100)
-  angleMode(DEGREES)
+  colorMode(HSB, 100);
+  angleMode(DEGREES);
   noStroke();
   loadNodes();
 }
@@ -16,12 +16,20 @@ function draw() {
   updateNodes();
 }
 
-restart = () =>{
-  background(0)
+const INTERACTION_KEY = 135;
+
+function keyPressed() {
+  if (keyCode === INTERACTION_KEY) {
+    restart();
+  }
+}
+
+restart = () => {
+  background(0);
   n = [];
   loadNodes();
-  n[0].sending = true
-}
+  n[0].sending = true;
+};
 
 updateNodes = () => {
   for (let i = 0; i < n.length; i++) {
@@ -38,35 +46,34 @@ updateNodes = () => {
     //   n[i].sender = []
     // }
   }
-}
+};
 
 loadNodes = () => {
   for (let i = 0; i < COUNT; i++) {
     let ranX;
     let ranY;
     do {
-       ranX = random(20, width - 20);
-       ranY = random(20, height - 20);
-    } while (findCloseNodes(ranX, ranY))
+      ranX = random(20, width - 20);
+      ranY = random(20, height - 20);
+    } while (findCloseNodes(ranX, ranY));
 
-    n.push(new Node(ranX, ranY, i))
+    n.push(new Node(ranX, ranY, i));
   }
   for (let i = 0; i < n.length; i++) {
     n[i].calculateNeighbors();
   }
   n[0].sending = true;
-}
+};
 
 findCloseNodes = (x, y) => {
   for (let node of n) {
     let d = dist(x, y, node.x, node.y);
     if (d < 30) {
-      return true
+      return true;
     }
   }
-  return false
-
-}
+  return false;
+};
 class Node {
   constructor(x, y, i) {
     this.x = x;
@@ -76,7 +83,7 @@ class Node {
     this.sending = false;
     this.time = 0;
     this.sender = [];
-    this.delay = floor(random(30, 60))
+    this.delay = floor(random(30, 60));
     this.sendCount = 0;
   }
 
@@ -92,10 +99,9 @@ class Node {
             dx: n[i].x - this.x,
             dy: n[i].y - this.y,
             sx: this.x,
-            sy: this.y
-          }
+            sy: this.y,
+          };
           this.neighbors.push(tempNeigh);
-
         }
       }
     }
@@ -103,22 +109,17 @@ class Node {
 
   display() {
     if (this.sending) {
-      fill(frameCount / 10 % 100, 100, 100)
+      fill((frameCount / 10) % 100, 100, 100);
     } else {
-      fill(255)
-
+      fill(255);
     }
     ellipse(this.x, this.y, 5, 5);
-    for (let {
-        index,
-        x,
-        y
-      } of this.neighbors) {
+    for (let { index, x, y } of this.neighbors) {
       if (this.i < index) {
         if (this.sending) {
-          stroke(100, 80)
+          stroke(100, 80);
         } else {
-          stroke(100, 10)
+          stroke(100, 10);
         }
         line(this.x, this.y, x, y);
         noStroke();
@@ -130,21 +131,19 @@ class Node {
     if (this.sending) {
       if (this.time < FRAMES + this.delay) {
         if (this.time >= this.delay) {
-
           for (let neigh of this.neighbors) {
             fill(((neigh.x + neigh.y * frameCount) / 500) % 100, 100, 100, 80);
-            let m = map(this.time, 0, this.delay + FRAMES, 3, 10)
+            let m = map(this.time, 0, this.delay + FRAMES, 3, 10);
             ellipse(neigh.sx, neigh.sy, m, m);
-            neigh.sx += neigh.dx / FRAMES
-            neigh.sy += neigh.dy / FRAMES
-
+            neigh.sx += neigh.dx / FRAMES;
+            neigh.sy += neigh.dy / FRAMES;
           }
         }
         this.time++;
       } else {
         // this.sending = false;
         this.sendCount++;
-        this.neighbors = []
+        this.neighbors = [];
         this.calculateNeighbors();
         for (let neigh of this.neighbors) {
           if (n[neigh.index].sendCount <= 10) {
@@ -152,9 +151,7 @@ class Node {
           }
         }
         this.time = 0;
-
       }
-
     }
     if (this.sendCount > 10) {
       this.sending = false;

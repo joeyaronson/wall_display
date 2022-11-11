@@ -5,6 +5,14 @@ function setup() {
   setVars();
 }
 
+const INTERACTION_KEY = 135;
+
+function keyPressed() {
+  if (keyCode === INTERACTION_KEY) {
+    setVars();
+  }
+}
+
 const setVars = () => {
   x = 0;
   y = 0;
@@ -125,7 +133,6 @@ function draw() {
   b += b2;
 
   if (frameCount % 20000 === 0) {
-    background(0);
     setVars();
   }
 }
