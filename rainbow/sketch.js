@@ -12,7 +12,7 @@ let NOISE_VAL = 0.09;
 let t = [];
 let s = [];
 let cOffset = 0;
-const INTERACTION_KEY = 135;
+const INTERACTION_KEY = 53;
 
 function keyPressed() {
   if (keyCode === INTERACTION_KEY) {

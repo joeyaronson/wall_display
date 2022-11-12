@@ -13,7 +13,7 @@ function setup() {
   var mode = "color";
   var timer = 0;
   
-  const INTERACTION_KEY = 135;
+  const INTERACTION_KEY = 53;
   function keyPressed() {
     if (keyCode === INTERACTION_KEY) {
       changeMode();

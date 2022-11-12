@@ -13,7 +13,7 @@ let startAngle;
 let minute;
 let startMin;
 let bg;
-const INTERACTION_KEY = 135;
+const INTERACTION_KEY = 53;
 
 function draw() {
   background(bg, 30, 100);

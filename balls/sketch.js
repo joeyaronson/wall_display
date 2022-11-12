@@ -18,7 +18,7 @@ let modes = ["black", "random", "white", "random"];
 let modeIndex = 0;
 
 let r, g, b;
-const INTERACTION_KEY = 135;
+const INTERACTION_KEY = 53;
 function phase01() {
     if (modes[modeIndex] === "black") {
         background(255);

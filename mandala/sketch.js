@@ -20,7 +20,7 @@ let g2;
 let b2;
 let modes;
 let mode;
-const INTERACTION_KEY = 135;
+const INTERACTION_KEY = 53;
 
 function keyPressed() {
   if (keyCode === INTERACTION_KEY) {

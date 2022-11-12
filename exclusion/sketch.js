@@ -62,7 +62,7 @@ let countChoices = [
   180
 ]
 let count;
-const INTERACTION_KEY = 135;
+const INTERACTION_KEY = 53;
 
 function draw() {
   //default blend mode

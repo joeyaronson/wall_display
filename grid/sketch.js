@@ -15,7 +15,7 @@ let prevArr = [];
 const SIZE = 20;
 let noiseVal = 0.1;
 let noiseVal2 = 0.01;
-const INTERACTION_KEY = 135;
+const INTERACTION_KEY = 53;
 
 function keyPressed() {
 	if (keyCode === INTERACTION_KEY) {

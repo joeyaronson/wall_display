@@ -57,11 +57,11 @@ const paths = [
     }
   };
   
-  const LEFT_KEY = 133;
-  const RIGHT_KEY = 134;
-  const INTERACTION_KEY = 135;
+  const LEFT_KEY = 51;
+  const RIGHT_KEY = 52;
+  const INTERACTION_KEY = 53;
   function keyPressed() {
-    print(keyCode);
+    print(keyCode === INTERACTION_KEY);
     if (keyCode === RIGHT_KEY) {
       activeIndex = (activeIndex + 1) % p.length;
     } else if (keyCode === LEFT_KEY) {
@@ -74,7 +74,7 @@ const paths = [
       if (newPath === "random") {
         newPath = random(paths);
       }
-      // location.href = `./${newPath}/index.html`;
+      location.href = `./${newPath}/index.html`;
     }
   }
   

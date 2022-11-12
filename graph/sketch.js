@@ -16,7 +16,7 @@ function draw() {
   updateNodes();
 }
 
-const INTERACTION_KEY = 135;
+const INTERACTION_KEY = 53;
 
 function keyPressed() {
   if (keyCode === INTERACTION_KEY) {

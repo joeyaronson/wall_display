@@ -16,7 +16,7 @@ let globalColor = 0;
 let hypotenuse;
 let part;
 let fr;
-const INTERACTION_KEY = 135;
+const INTERACTION_KEY = 53;
 
 let attract = false;
 let aX, aY;
@@ -29,10 +29,10 @@ function draw() {
     globalColor += 0.5;
     fill(100);
     textSize(10);
-    if (frameRate() < 10) {
+    if (fr < 10) {
         p.splice(0, 1);
     }
-    if (frameRate() > 30) {
+    if (fr > 20) {
         p.push(new Particle(random(width), random(height)));
     }
     if (frameCount % 10 == 0) {

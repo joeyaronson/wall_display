@@ -46,9 +46,9 @@ setInterval(() => {
 
 document.addEventListener('keyup', (e) => {
     console.log(e.code)
-    if (e.code === "F21") {
+    if (e.code === "Digit2") {
         location.href = `../home.html`
-    } else if (["F22", "F23"].includes(e.code)) {
+    } else if (["Digit3", "Digit4"].includes(e.code)) {
         choosePage();
     }
 

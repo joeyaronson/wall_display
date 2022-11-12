@@ -12,7 +12,7 @@ let D = 200;
 let SIZE;
 let fc = 0;
 
-const INTERACTION_KEY = 135;
+const INTERACTION_KEY = 53;
 function keyPressed() {
 	if (keyCode === INTERACTION_KEY) {
 		SIZE += 2
