@@ -53,7 +53,7 @@ document.addEventListener('keyup', (e) => {
             location.href = `../home.html`
 
         } else {
-            location.href = `../home.html`
+            location.href = `./home.html`
 
         }
     } else if (["Digit3", "Digit4"].includes(e.code)) {
