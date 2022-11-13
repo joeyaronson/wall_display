@@ -34,7 +34,6 @@ setInterval(() => {
 
 setInterval(() => {
     let d = new Date();
-    console.log("checking")
     if (d.getHours() === 0 && isArtPage()) {
         location.href = `../sleep.html`
     }
@@ -42,7 +41,6 @@ setInterval(() => {
 
 setInterval(() => {
     let d = new Date();
-    console.log(d.getHours())
     if (d.getHours() === 10 && !isArtPage()) {
         choosePage(true);
     }
@@ -51,7 +49,13 @@ setInterval(() => {
 document.addEventListener('keyup', (e) => {
     console.log(e.code)
     if (e.code === "Digit2") {
-        location.href = `../home.html`
+        if (isArtPage()) {
+            location.href = `../home.html`
+
+        } else {
+            location.href = `../home.html`
+
+        }
     } else if (["Digit3", "Digit4"].includes(e.code)) {
         choosePage();
     }
