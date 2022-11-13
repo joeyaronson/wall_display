@@ -11,6 +11,7 @@ const paths = [
   "flower",
   "graph",
   "grid",
+  "hallway",
   "mandala",
   "mandala3D",
   "orb",

@@ -1,0 +1,163 @@
+function setup() {
+  rectMode(CENTER);
+  colorMode(HSB, 100);
+  angleMode(DEGREES);
+  createCanvas(720, 1280);
+  loadRand();
+}
+let r = [];
+let noiseVal = 0.01;
+let modes = ["rainbow", "white", "black", "random"];
+let mI = 0;
+
+let ch;
+let cs;
+let cb;
+const INTERACTION_KEY = 53;
+function keyPressed() {
+  if (keyCode === INTERACTION_KEY) {
+    mI++;
+  }
+}
+
+const loadRand = () => {
+  ch = random(0, 100);
+  cs = random(0, 100);
+  cb = random(0, 100);
+};
+function draw() {
+  background(220);
+
+  let nOffx = sin(cos(frameCount / 2) * 360) * 20;
+  let nOffy = cos(sin(frameCount / 2) * 360) * 20;
+
+  if (frameCount % 5 === 0) {
+    r.unshift(
+      new Rec(
+        width / 2 + nOffx,
+        height / 2 + nOffy,
+        3,
+        frameCount / 3,
+        modes[mI % modes.length]
+      )
+    );
+  }
+
+  for (let i = 0; i < r.length; i++) {
+    r[i].display();
+    r[i].move();
+    if (i !== 0) {
+      const curRec = r[i];
+      const nextRec = r[i - 1];
+      const sx = curRec.x;
+      const sy = curRec.y;
+
+      const ex = nextRec.x;
+      const ey = nextRec.y;
+      stroke(255, 0, 255);
+
+      if (["rainbow", "white"].includes(curRec.mode)) {
+        stroke(0);
+      } else if (curRec.mode === "black") {
+        stroke(100);
+      } else if (curRec.mode === "random") {
+        stroke((ch + 50) % 100, (cs + 50) % 100, (cb + 50) % 100);
+      }
+      line(
+        sx - curRec.s / 2,
+        sy - (curRec.s * 1.777) / 2,
+        ex - nextRec.s / 2,
+        ey - (nextRec.s * 1.777) / 2
+      );
+      line(
+        sx + curRec.s / 2,
+        sy + (curRec.s * 1.777) / 2,
+        ex + nextRec.s / 2,
+        ey + (nextRec.s * 1.777) / 2
+      );
+
+      line(
+        sx + curRec.s / 2,
+        sy - (curRec.s * 1.777) / 2,
+        ex + nextRec.s / 2,
+        ey - (nextRec.s * 1.777) / 2
+      );
+      line(
+        sx - curRec.s / 2,
+        sy + (curRec.s * 1.777) / 2,
+        ex - nextRec.s / 2,
+        ey + (nextRec.s * 1.777) / 2
+      );
+    }
+  }
+
+  r = r.filter((x) => !x.burnt);
+
+  if (frameCount % 3000 === 0) {
+    modes = shuffle(modes);
+  }
+}
+
+class Rec {
+  constructor(x, y, s, c, mode) {
+    this.x = x;
+    this.y = y;
+    this.s = s;
+    this.s2 = 0.001;
+    this.burnt = false;
+    this.c = c;
+    this.mode = mode;
+  }
+  display() {
+    if (["rainbow", "white"].includes(this.mode)) {
+      stroke(0);
+    } else if (this.mode === "black") {
+      stroke(100);
+    } else if (this.mode === "random") {
+      stroke((ch + 50) % 100, (cs + 50) % 100, (cb + 50) % 100);
+    }
+    noFill();
+
+    let sw = this.s2 * 1.5;
+    strokeWeight(sw);
+    rect(this.x, this.y, this.s, this.s * 1.777);
+
+    noStroke();
+    if (this.mode === "rainbow") {
+      fill(this.c % 100, 80, 100);
+    } else if (this.mode === "white") {
+      fill(100);
+    } else if (this.mode === "black") {
+      fill(0);
+    } else if (this.mode === "random") {
+      fill(ch, cs, cb);
+    }
+    let rw = (width + 100) / 2 - this.s / 2;
+    rect(this.x - this.s / 2 - rw / 2 - sw / 2, this.y, rw, height + 100);
+    rect(this.x + this.s / 2 + rw / 2 + sw / 2, this.y, rw, height + 100);
+
+    let rh = (height + 100) / 2 - (this.s * 1.777) / 2;
+
+    rect(
+      this.x,
+      this.y - (this.s * 1.777) / 2 - rh / 2 - sw / 2,
+      width + 100,
+      rh
+    );
+    rect(
+      this.x,
+      this.y + (this.s * 1.777) / 2 + rh / 2 + sw / 2,
+      width + 100,
+      rh
+    );
+  }
+
+  move() {
+    this.s += this.s2;
+    this.s2 += 0.01;
+
+    if (this.s > 800) {
+      this.burnt = true;
+    }
+  }
+}
