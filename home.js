@@ -6,6 +6,7 @@ const paths = [
   "cubes",
   "drip",
   "exclusion",
+  "eye",
   "fireflies",
   "flower",
   "graph",
