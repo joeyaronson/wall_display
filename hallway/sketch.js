@@ -10,6 +10,9 @@ let noiseVal = 0.01;
 let modes = ["rainbow", "white", "black", "random"];
 let mI = 0;
 
+let wait = false;
+let waitCount = 0;
+let rainCol = 0;
 let ch;
 let cs;
 let cb;
@@ -28,10 +31,23 @@ const loadRand = () => {
 function draw() {
   background(220);
 
+  if (modes[mI % modes.length] === "rainbow") {
+    background(rainCol % 100, 80, 100);
+  } else if (modes[mI % modes.length] === "white") {
+    background(100);
+  } else if (modes[mI % modes.length] === "black") {
+    background(0);
+  } else if (modes[mI % modes.length] === "random") {
+    background(ch, cs, cb);
+  }
+  if (wait) {
+    waitCount++;
+  }
+
   let nOffx = sin(cos(frameCount / 2) * 360) * 20;
   let nOffy = cos(sin(frameCount / 2) * 360) * 20;
 
-  if (frameCount % 5 === 0) {
+  if (frameCount % 5 === 0 && !wait) {
     r.unshift(
       new Rec(
         width / 2 + nOffx,
@@ -91,10 +107,19 @@ function draw() {
     }
   }
 
+
+  if (waitCount > 500) {
+    wait = false;
+    waitCount = 0;
+  }
+
   r = r.filter((x) => !x.burnt);
 
-  if (frameCount % 3000 === 0) {
+  if (frameCount % 2000 === 0) {
     modes = shuffle(modes);
+    loadRand();
+    wait = true;
+    rainCol = (frameCount + 500) / 3
   }
 }
 
