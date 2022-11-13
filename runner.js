@@ -18,10 +18,12 @@ const paths = [
     "sin",
     "swarm",
     "tiedye",
+    "tiles",
     "void",
     "wave",
     "wiggles",
-]
+    "random",
+];
 setInterval(() => {
     if (isArtPage()) {
         choosePage();
