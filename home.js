@@ -23,7 +23,6 @@ const paths = [
   "void",
   "wave",
   "wiggles",
-  "random",
 ];
 let p = [];
 
@@ -41,6 +40,7 @@ function setup() {
   colorMode(HSB, 100);
 
   createCanvas(720, 1280);
+  paths.push("random")
   loadPages();
 }
 

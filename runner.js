@@ -24,7 +24,6 @@ const paths = [
     "void",
     "wave",
     "wiggles",
-    "random",
 ];
 setInterval(() => {
     if (isArtPage()) {
