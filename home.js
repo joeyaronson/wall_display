@@ -83,9 +83,26 @@ function keyPressed() {
 
 function draw() {
   background(59, 22, 60);
+  textAlign(CENTER, CENTER);
   for (let page of p) {
     page.display();
   }
+  textSize(18);
+
+  line(185, height, 185, height - 60);
+  text("reboot", 185, height - 75);
+
+  line(260, height, 260, height - 60);
+  text("home", 260, height - 75);
+
+  line(335, height, 335, height - 60);
+  text("previous", 335, height - 75);
+  
+   line(410, height, 410, height -60);
+  text("next", 410, height - 75);
+  
+   line(485, height, 485, height -60);
+  text("select", 485, height - 75);
 }
 
 class Page {
@@ -96,29 +113,26 @@ class Page {
     this.i = i;
   }
   display() {
+    push();
+    translate(this.x, this.y);
+    textSize(30);
+
     if (this.path === "random") {
       fill(200, 60, 80);
     } else {
       fill(59, 22, 30);
     }
     if (this.i === activeIndex) {
-      strokeWeight(5 + 2 * cos(frameCount * 5));
       stroke(frameCount % 100, 80, 80);
-      rect(
-        this.x,
-        this.y,
-        w + 3 * cos(frameCount * 5),
-        h + 3 * cos(frameCount * 5),
-        10
-      );
-      textSize(30 + 3 * cos(frameCount * 5));
+      strokeWeight(8);
+      scale(1 + cos(frameCount * 5) / 22);
     } else {
       noStroke();
-      rect(this.x, this.y, w, h, 10);
-      textSize(30);
     }
+    rect(0, 0, w, h, 10);
     fill(255);
     noStroke();
-    text(this.path, this.x, this.y);
+    text(this.path, 0, 0);
+    pop();
   }
 }
