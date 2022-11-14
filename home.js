@@ -89,20 +89,35 @@ function draw() {
   }
   textSize(18);
 
-  line(185, height, 185, height - 60);
-  text("reboot", 185, height - 75);
+//   line(185, height, 185, height - 60);
+//   text("reboot", 185, height - 75);
 
-  line(260, height, 260, height - 60);
-  text("home", 260, height - 75);
+//   line(260, height, 260, height - 60);
+//   text("home", 260, height - 75);
 
-  line(335, height, 335, height - 60);
-  text("previous", 335, height - 75);
+//   line(335, height, 335, height - 60);
+//   text("previous", 335, height - 75);
   
-   line(410, height, 410, height -60);
-  text("next", 410, height - 75);
+//    line(410, height, 410, height -60);
+//   text("next", 410, height - 75);
   
-   line(485, height, 485, height -60);
-  text("select", 485, height - 75);
+//    line(485, height, 485, height -60);
+  // text("select", 485, height - 75);
+  
+   line(222, height, 222, height - 60);
+  text("reboot", 222, height - 75);
+
+  line(297, height, 297, height - 60);
+  text("home", 297, height - 75);
+
+  line(372, height, 372, height - 60);
+  text("previous", 372, height - 75);
+  
+   line(447, height, 447, height -60);
+  text("next", 447, height - 75);
+  
+   line(522, height, 522, height -60);
+  text("select", 522, height - 75);
 }
 
 class Page {
