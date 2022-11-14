@@ -32,6 +32,8 @@ let h = 50;
 
 let activeIndex = 0;
 const padding = 70;
+
+const buttons = ["reboot", "home", "previous", "next", "select"];
 function setup() {
   angleMode(DEGREES);
   rectMode(CENTER);
@@ -88,21 +90,15 @@ function draw() {
     page.display();
   }
   textSize(18);
-  
-  line(240, height, 240, height - 60);
-  text("reboot", 240, height - 75);
+  stroke(59, 22, 30);
+  fill(59, 22, 30);
 
-  line(297, height, 297, height - 60);
-  text("home", 297, height - 75);
-
-  line(372, height, 372, height - 60);
-  text("previous", 372, height - 75);
-  
-   line(447, height, 447, height -60);
-  text("next", 447, height - 75);
-  
-   line(522, height, 522, height -60);
-  text("select", 522, height - 75);
+  for (let i = 0; i < buttons.length; i++) {
+    let offset = 240 + i * 55;
+    let heightOff = height - (i % 2 === 0 ? 60 : 80);
+    line(offset, height, offset, heightOff);
+    text(buttons[i], offset, heightOff - 15);
+  }
 }
 
 class Page {
