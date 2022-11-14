@@ -3,9 +3,9 @@
 ///////////////////////////////////////////////////////////////////////////////////
 let t = [];
 let SIZE = 80;
-let sizeOpts = [40, 80];
+let sizeOpts = [80];
 let phase = "wait";
-let sw = 8;
+let sw = 20;
 let counter = 0;
 let waitCounter = 0;
 let r, g, b, lineCol, bgCol, rectCol;
@@ -19,16 +19,16 @@ const INTERACTION_KEY = 53;
 // HELPER FUNCS
 ///////////////////////////////////////////////////////////////////////////////////
 function keyPressed() {
-    if (keyCode === INTERACTION_KEY) {
-      restart();
-    }
+  if (keyCode === INTERACTION_KEY) {
+    restart();
   }
+}
 const restart = () => {
   t = [];
   SIZE = random(sizeOpts);
   counter = 0;
   waitCounter = 0;
-  sw = random(3, 12);
+  sw = random(8, 16);
   loadTiles();
   chooseMovingTiles();
   chooseColors();
@@ -146,6 +146,9 @@ function draw() {
       tile.move();
     }
   }
+  for (let tile of t) {
+    tile.display2();
+  }
   counter++;
 
   phaseChanger();
@@ -165,6 +168,7 @@ class Tile {
     this.x = x;
     this.y = y;
     this.a = random([0, 90]);
+    this.t = random(["arc", "arc", "arc", "line"]);
     this.m = false;
     this.md = random([-1, 1]);
   }
@@ -182,14 +186,48 @@ class Tile {
     }
     rect(0, 0, SIZE, SIZE);
     noFill();
+
+
+    stroke(0);
+
+    strokeWeight(sw);
+
+    if (this.t === "arc") {
+      arc(-SIZE / 2, -SIZE / 2, SIZE, SIZE, 0, 90);
+      arc(SIZE / 2, SIZE / 2, SIZE, SIZE, 180, 270);
+    } else {
+      line(SIZE / 2, 0, -SIZE / 2, 0)
+      line(0, SIZE / 2, 0, -SIZE / 2)
+    }
+
+    pop();
+  }
+
+  display2() {
+    push();
+    translate(this.x, this.y);
+    rotate(this.a);
+    if (phase === "move" && this.m) {
+      scale(-sin(counter * 2) / 2 + 1);
+    }
+    noStroke();
+    noFill();
     stroke(lineCol);
     if (phase === "color") {
       stroke(lerpColor(lineCol, lineCol2, map(counter, 0, 180, 0, 1)));
     }
 
-    strokeWeight(sw);
-    arc(-SIZE / 2, -SIZE / 2, SIZE, SIZE, 0, 90);
-    arc(SIZE / 2, SIZE / 2, SIZE, SIZE, 180, 270);
+    strokeWeight(sw / 3);
+
+
+
+    if (this.t === "arc") {
+      arc(-SIZE / 2, -SIZE / 2, SIZE, SIZE, 0, 90);
+      arc(SIZE / 2, SIZE / 2, SIZE, SIZE, 180, 270);
+    } else {
+      line(SIZE / 2, 0, -SIZE / 2, 0)
+      line(0, SIZE / 2, 0, -SIZE / 2)
+    }
 
     pop();
   }
