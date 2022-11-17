@@ -4,6 +4,7 @@ const paths = [
     "boxes",
     "cacti",
     "cells",
+    "cellclock",
     "cubes",
     "drip",
     "exclusion",
