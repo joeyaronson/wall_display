@@ -538,7 +538,7 @@ function setup() {
   function keyPressed() {
 	if (keyCode === INTERACTION_KEY) {
 	  if (waitCount < waitThreshold) {
-		waitCount = 300;
+		waitCount = waitThreshold;
 	  } else {
 		let d = new Date();
 		restart(d);
@@ -551,7 +551,7 @@ function setup() {
 	for (let i = 0; i < t.length; i++) {
 	  for (let j = 0; j < t[i].length; j++) {
 		t[i][j].display();
-		if (waitCount > 300) {
+		if (waitCount > waitThreshold) {
 		  t[i][j].calculateNextFrame();
 		}
 	  }
