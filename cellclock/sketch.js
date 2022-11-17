@@ -533,7 +533,7 @@ function setup() {
   
   const INTERACTION_KEY = 53;
   
-  const waitThreshold = 300;
+  const waitThreshold = 100;
   
   function keyPressed() {
 	if (keyCode === INTERACTION_KEY) {
