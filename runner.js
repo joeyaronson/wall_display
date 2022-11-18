@@ -27,6 +27,7 @@ const paths = [
     "wave",
     "wiggles",
 ];
+
 setInterval(() => {
     if (isArtPage()) {
         choosePage();
@@ -45,6 +46,8 @@ setInterval(() => {
     if (d.getHours() === 10 && !isArtPage()) {
         choosePage(true);
     }
+    document.getElementById('defaultCanvas0').focus()
+
 }, 10000);
 
 document.addEventListener('keyup', (e) => {
