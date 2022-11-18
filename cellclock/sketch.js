@@ -683,10 +683,8 @@ function setup() {
 	display() {
 	  if (this.o === 1) {
 		fill((this.lifeSpan + frameCount) % 100, 100, 100, waitCount);
-	  } else {
-		fill(0, 10);
-	  }
-	  rect(this.x, this.y, SIZE, SIZE);
+		rect(this.x, this.y, SIZE, SIZE);
+	  } 
 	}
   
 	calculateNextFrame() {
