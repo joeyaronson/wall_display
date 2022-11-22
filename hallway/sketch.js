@@ -32,13 +32,13 @@ function draw() {
   background(220);
 
   if (modes[mI % modes.length] === "rainbow") {
-    background(rainCol % 100, 80, 100);
+    background(rainCol % 100, 80, 20);
   } else if (modes[mI % modes.length] === "white") {
-    background(100);
+    background(100, 0, 20);
   } else if (modes[mI % modes.length] === "black") {
     background(0);
   } else if (modes[mI % modes.length] === "random") {
-    background(ch, cs, cb);
+    background(ch, cs, 20);
   }
   if (wait) {
     waitCount++;
@@ -60,7 +60,7 @@ function draw() {
   }
 
   for (let i = 0; i < r.length; i++) {
-    r[i].display();
+    r[i].display(i);
     r[i].move();
     if (i !== 0) {
       const curRec = r[i];
@@ -70,14 +70,14 @@ function draw() {
 
       const ex = nextRec.x;
       const ey = nextRec.y;
-      stroke(255, 0, 255);
+      let br = map(r[i].s, 0, 720, 20, 100);
 
       if (["rainbow", "white"].includes(curRec.mode)) {
         stroke(0);
       } else if (curRec.mode === "black") {
-        stroke(100);
+        stroke(100, 0, br);
       } else if (curRec.mode === "random") {
-        stroke((ch + 50) % 100, (cs + 50) % 100, (cb + 50) % 100);
+        stroke((ch + 50) % 100, (cs + 50) % 100, br);
       }
       line(
         sx - curRec.s / 2,
@@ -107,19 +107,22 @@ function draw() {
     }
   }
 
-
   if (waitCount > 500) {
     wait = false;
     waitCount = 0;
+    loadRand();
   }
 
   r = r.filter((x) => !x.burnt);
 
   if (frameCount % 2000 === 0) {
+    let oMode = modes[mI % modes.length];
     modes = shuffle(modes);
-    loadRand();
+    if (oMode === "random" && modes[mI % modes.length] === "random") {
+      mI++;
+    }
     wait = true;
-    rainCol = (frameCount + 500) / 3
+    rainCol = (frameCount + 500) / 3;
   }
 }
 
@@ -133,13 +136,15 @@ class Rec {
     this.c = c;
     this.mode = mode;
   }
-  display() {
+  display(i) {
+    let br = map(this.s, 0, 720, 20, 100);
+
     if (["rainbow", "white"].includes(this.mode)) {
       stroke(0);
     } else if (this.mode === "black") {
-      stroke(100);
+      stroke(100, 0, br);
     } else if (this.mode === "random") {
-      stroke((ch + 50) % 100, (cs + 50) % 100, (cb + 50) % 100);
+      stroke((ch + 50) % 100, (cs + 50) % 100, br);
     }
     noFill();
 
@@ -149,13 +154,16 @@ class Rec {
 
     noStroke();
     if (this.mode === "rainbow") {
-      fill(this.c % 100, 80, 100);
+      if (i === r.length - 1) {
+        fill(this.c % 100, 80, 100);
+      }
+      fill(this.c % 100, 80, br);
     } else if (this.mode === "white") {
-      fill(100);
+      fill(100, 0, br);
     } else if (this.mode === "black") {
       fill(0);
     } else if (this.mode === "random") {
-      fill(ch, cs, cb);
+      fill(ch, cs, br);
     }
     let rw = (width + 100) / 2 - this.s / 2;
     rect(this.x - this.s / 2 - rw / 2 - sw / 2, this.y, rw, height + 100);
