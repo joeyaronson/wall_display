@@ -25,7 +25,17 @@ function draw() {
     for (let i = 0; i < p.length; i++) {
         p[i].display();
         p[i].move();
+        p[i].checkBounds();
     }
+    let ol = p.length;
+    p = p.filter((x) => !x.o);
+    let nl = p.length;
+    if (ol != nl) {
+        for (let i = 0; i < ol - nl; i++) {
+            p.push(new Particle(random(width), random(height)));
+        }
+    }
+
     globalColor += 0.5;
     fill(100);
     textSize(10);
@@ -40,12 +50,10 @@ function draw() {
         fr = floor(frameRate());
     }
 
-    //debug
-    // text("particles: "+part,20,30);
-    // text("framerate: " +fr,20,60);
+    //   //debug
+    //   // text("particles: "+part,20,30);
+    //   // text("framerate: " +fr,20,60);
 }
-
-
 
 class Particle {
     constructor(x, y) {
@@ -54,6 +62,7 @@ class Particle {
         this.ax = random(-0.03, 0.03);
         this.ay = random(-0.03, 0.03);
         this.h = random(0, 100);
+        this.o = false;
     }
 
     display() {
@@ -94,6 +103,17 @@ class Particle {
         } else {
             aX = random(width);
             aY = random(height);
+        }
+    }
+
+    checkBounds() {
+        if (
+            this.x > width + 200 ||
+            this.x < -200 ||
+            this.y > height + 200 ||
+            this.y < -200
+        ) {
+            this.o = true;
         }
     }
 }
