@@ -1,5 +1,6 @@
 const paths = [
   "abstract",
+  "arcclock",
   "balls",
   "boxes",
   "cacti",
