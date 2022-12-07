@@ -1,6 +1,6 @@
 let font;
 function preload() {
-  font = loadFont("./font2.otf");
+  font = loadFont("./font.otf");
 }
 
 function setup() {
