@@ -22,6 +22,7 @@ const paths = [
   "rainbow",
   "sin",
   "swarm",
+  "swarmclock",
   "tiedye",
   "tiles",
   "void",
