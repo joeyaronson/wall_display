@@ -24,24 +24,24 @@ function setup() {
     {
       x: 430,
       y: 580,
-      offx: [width + 10, width + 100],
-      offy: [-10, -100],
+      offx: [width + 50, width + 100],
+      offy: [-50, -100],
       xbound: [width / 2, width],
       ybound: [0, height / 2],
     },
     {
       x: 70,
       y: 1220,
-      offx: [10, 100],
-      offy: [height + 10, height + 100],
+      offx: [50, 100],
+      offy: [height + 50, height + 100],
       xbound: [0, width / 2],
       ybound: [height / 2, height],
     },
     {
       x: 430,
       y: 1220,
-      offx: [width + 10, width + 100],
-      offy: [height + 10, height + 100],
+      offx: [width + 50, width + 100],
+      offy: [height + 50, height + 100],
       xbound: [width / 2, width],
       ybound: [height / 2, height],
     },
@@ -60,7 +60,6 @@ let interact = false;
 const INTERACTION_KEY = 53;
 function keyPressed() {
   if (keyCode === INTERACTION_KEY) {
-    print(frameRate());
     if (interact) {
       timer = 200;
     } else {
@@ -206,10 +205,17 @@ class Num {
         );
       }
     } else {
-      this.points = this.points.splice(0, newPoints.length);
+      // this.points = this.points.splice(0, newPoints.length);
       for (let i = 0; i < this.points.length; i++) {
-        this.points[i].tx = newPoints[i].tx;
-        this.points[i].ty = newPoints[i].ty;
+        if (i >= newPoints.length) {
+          let { offx, offy } = pos[this.i];
+
+          this.points[i].tx = random(offx[0], offx[1]);
+          this.points[i].ty = random(offy[0], offy[1]);
+        } else {
+          this.points[i].tx = newPoints[i].tx;
+          this.points[i].ty = newPoints[i].ty;
+        }
       }
     }
   }
@@ -276,8 +282,8 @@ class Point {
     let ay = cos(angle);
     let d = dist(this.x, this.y, this.tx, this.ty);
     let ds = map(d, 0, hypotenuse, 3, 5);
-    this.tx += sin(frameCount * 8 + this.ty + this.i * 90);
-    this.ty += cos(frameCount * 3 + this.tx + this.i * 90) / 2;
+    this.tx += sin(frameCount * 8 + this.ty + this.i * 90)/2;
+    this.ty += cos(frameCount * 3 + this.tx + this.i * 90) / 3;
     if (d > 2) {
       this.x += ax * ds;
       this.y += ay * ds;
