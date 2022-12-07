@@ -1,52 +1,52 @@
 let font;
 function preload() {
-    font = loadFont("font.otf");
+  font = loadFont("./font2.otf");
 }
 
 function setup() {
-    createCanvas(720, 1280);
-    hypotenuse = sqrt(width * width + height * height);
-    colorMode(HSB, 100);
-    angleMode(DEGREES);
-    textAlign(CENTER, CENTER);
-    let d = new Date();
-    globalMin = d.getMinutes();
-    noStroke();
-    pos = [
-        {
-            x: 70,
-            y: 580,
-            offx: [-10, -100],
-            offy: [-10, -100],
-            xbound: [0, width / 2],
-            ybound: [0, height / 2],
-        },
-        {
-            x: 430,
-            y: 580,
-            offx: [width + 10, width + 100],
-            offy: [-10, -100],
-            xbound: [width / 2, width],
-            ybound: [0, height / 2],
-        },
-        {
-            x: 70,
-            y: 1220,
-            offx: [10, 100],
-            offy: [height + 10, height + 100],
-            xbound: [0, width / 2],
-            ybound: [height / 2, height],
-        },
-        {
-            x: 430,
-            y: 1220,
-            offx: [width + 10, width + 100],
-            offy: [height + 10, height + 100],
-            xbound: [width / 2, width],
-            ybound: [height / 2, height],
-        },
-    ];
-    loadNums();
+  createCanvas(720, 1280);
+  hypotenuse = sqrt(width * width + height * height);
+  colorMode(HSB, 100);
+  angleMode(DEGREES);
+  textAlign(CENTER, CENTER);
+  let d = new Date();
+  globalMin = d.getMinutes();
+  noStroke();
+  pos = [
+    {
+      x: 70,
+      y: 580,
+      offx: [-10, -100],
+      offy: [-10, -100],
+      xbound: [0, width / 2],
+      ybound: [0, height / 2],
+    },
+    {
+      x: 430,
+      y: 580,
+      offx: [width + 10, width + 100],
+      offy: [-10, -100],
+      xbound: [width / 2, width],
+      ybound: [0, height / 2],
+    },
+    {
+      x: 70,
+      y: 1220,
+      offx: [10, 100],
+      offy: [height + 10, height + 100],
+      xbound: [0, width / 2],
+      ybound: [height / 2, height],
+    },
+    {
+      x: 430,
+      y: 1220,
+      offx: [width + 10, width + 100],
+      offy: [height + 10, height + 100],
+      xbound: [width / 2, width],
+      ybound: [height / 2, height],
+    },
+  ];
+  loadNums();
 }
 
 let p = [];
@@ -59,239 +59,238 @@ let interact = false;
 
 const INTERACTION_KEY = 53;
 function keyPressed() {
-    if (keyCode === INTERACTION_KEY) {
-        if (interact) {
-            timer = 200;
-        } else {
-            resetPos();
-            interact = true;
-        }
+  if (keyCode === INTERACTION_KEY) {
+    print(frameRate());
+    if (interact) {
+      timer = 200;
+    } else {
+      resetPos();
+      interact = true;
     }
+  }
 }
 
 const loadPoints = (num, x, y) => {
-    return font.textToPoints(String(num), x, y, 700, {
-        sampleFactor: 0.15,
-        simplifyThreshold: 0,
-    });
+  return font.textToPoints(String(num), x, y, 700, {
+    sampleFactor: 0.15,
+    simplifyThreshold: 0,
+  });
 };
 const loadNums = () => {
-    let timeArr = calculateTime();
+  let timeArr = calculateTime();
 
-    for (let i = 0; i < pos.length; i++) {
-        n.push(new Num(pos[i].x, pos[i].y, timeArr[i], i));
-    }
+  for (let i = 0; i < pos.length; i++) {
+    n.push(new Num(pos[i].x, pos[i].y, timeArr[i], i));
+  }
 };
 
 const resetPos = () => {
-    for (let num of n) {
-        num.resetPos();
-    }
+  for (let num of n) {
+    num.resetPos();
+  }
 };
 
 const calculateTime = () => {
-    const d = new Date();
-    let h = d.getHours();
-    let hours = String(h < 13 ? h : h % 12);
-    if (hours === "0") {
-        hours = "12";
-    }
-    let minutes = String(d.getMinutes());
-    if (String(hours).length === 1) {
-        hours = "0" + hours;
-    }
-    if (String(minutes).length === 1) {
-        minutes = "0" + minutes;
-    }
-    let timeArr = [hours[0], hours[1], minutes[0], minutes[1]];
-    return timeArr;
+  const d = new Date();
+  let h = d.getHours();
+  let hours = String(h < 13 ? h : h % 12);
+  if (hours === "0") {
+    hours = "12";
+  }
+  let minutes = String(d.getMinutes());
+  if (String(hours).length === 1) {
+    hours = "0" + hours;
+  }
+  if (String(minutes).length === 1) {
+    minutes = "0" + minutes;
+  }
+  let timeArr = [hours[0], hours[1], minutes[0], minutes[1]];
+  return timeArr;
 };
 
 function draw() {
-    background(0, 50);
+  background(0, 50);
+  for (let num of n) {
+    num.display();
+  }
+
+  let d = new Date();
+  if (!interact && d.getMinutes() != globalMin) {
+    let timeArr = calculateTime();
+    for (let i = 0; i < n.length; i++) {
+      if (timeArr[i] !== n[i].num) {
+        n[i].changeNum(timeArr[i]);
+      }
+    }
+    globalMin = d.getMinutes();
+  }
+
+  if (interact) {
+    timer++;
+  }
+
+  if (timer > 200) {
+    timer = 0;
+    interact = false;
     for (let num of n) {
-        num.display();
+      num.setPos();
     }
-
-    let d = new Date();
-    if (!interact && d.getMinutes() != globalMin) {
-        let timeArr = calculateTime();
-        for (let i = 0; i < n.length; i++) {
-            if (timeArr[i] !== n[i].num) {
-                n[i].changeNum(timeArr[i]);
-            }
-        }
-        globalMin = d.getMinutes();
-    }
-
-    if (interact) {
-        timer++;
-    }
-
-    if (timer > 200) {
-        timer = 0;
-        interact = false;
-        for (let num of n) {
-            num.setPos();
-        }
-    }
+  }
 }
 
 class Num {
-    constructor(x, y, num, i) {
-        this.x = x;
-        this.y = y;
-        this.i = i;
-        this.num = num;
-        this.points = this.loadPos(num, x, y);
+  constructor(x, y, num, i) {
+    this.x = x;
+    this.y = y;
+    this.i = i;
+    this.num = num;
+    this.points = this.loadPos(num, x, y);
+  }
+
+  resetPos() {
+    for (let i = 0; i < this.points.length; i++) {
+      let currPoint = this.points[i];
+      currPoint.temptx = currPoint.tx;
+      currPoint.tempty = currPoint.ty;
+
+      currPoint.tx = currPoint.ox;
+      currPoint.ty = currPoint.oy;
     }
+  }
 
-    resetPos() {
-        for (let i = 0; i < this.points.length; i++) {
-            let currPoint = this.points[i];
-            currPoint.temptx = currPoint.tx;
-            currPoint.tempty = currPoint.ty;
+  setPos() {
+    for (let i = 0; i < this.points.length; i++) {
+      let currPoint = this.points[i];
 
-            currPoint.tx = currPoint.ox;
-            currPoint.ty = currPoint.oy;
-        }
+      currPoint.tx = currPoint.temptx;
+      currPoint.ty = currPoint.tempty;
     }
+  }
 
-    setPos() {
-        for (let i = 0; i < this.points.length; i++) {
-            let currPoint = this.points[i];
-
-            currPoint.tx = currPoint.temptx;
-            currPoint.ty = currPoint.tempty;
-        }
+  loadPos(num) {
+    let plist = [];
+    let points = loadPoints(num, this.x, this.y);
+    for (let i = 0; i < points.length; i++) {
+      const { x, y } = points[i];
+      plist.push(
+        new Point(
+          x,
+          y,
+          random(pos[this.i].xbound[0], pos[this.i].xbound[1]),
+          random(pos[this.i].ybound[0], pos[this.i].ybound[1]),
+          this.i
+        )
+      );
     }
+    return plist;
+  }
 
-    loadPos(num) {
-        let plist = [];
-        let points = loadPoints(num, this.x, this.y);
-        for (let i = 0; i < points.length; i++) {
-            const { x, y } = points[i];
-            plist.push(
-                new Point(
-                    x,
-                    y,
-                    random(pos[this.i].xbound[0], pos[this.i].xbound[1]),
-                    random(pos[this.i].ybound[0], pos[this.i].ybound[1]),
-                    this.i
-                )
-            );
-        }
-        return plist;
+  changeNum(num) {
+    let newPoints = this.loadPos(num);
+    if (newPoints.length > this.points.length) {
+      for (let i = 0; i < this.points.length; i++) {
+        this.points[i].tx = newPoints[i].tx;
+        this.points[i].ty = newPoints[i].ty;
+      }
+      for (let i = this.points.length; i < newPoints.length; i++) {
+        const { tx, ty } = newPoints[i];
+        let { offx, offy } = pos[this.i];
+        this.points.push(
+          new Point(
+            tx,
+            ty,
+            random(offx[0], offx[1]),
+            random(offy[0], offy[1]),
+            this.i
+          )
+        );
+      }
+    } else {
+      this.points = this.points.splice(0, newPoints.length);
+      for (let i = 0; i < this.points.length; i++) {
+        this.points[i].tx = newPoints[i].tx;
+        this.points[i].ty = newPoints[i].ty;
+      }
     }
+  }
 
-    changeNum(num) {
-        let newPoints = this.loadPos(num);
-        if (newPoints.length > this.points.length) {
-            for (let i = 0; i < this.points.length; i++) {
-                this.points[i].tx = newPoints[i].tx;
-                this.points[i].ty = newPoints[i].ty;
-            }
-            for (let i = this.points.length; i < newPoints.length; i++) {
-                const { tx, ty } = newPoints[i];
-                let { offx, offy } = pos[this.i];
-                this.points.push(
-                    new Point(
-                        tx,
-                        ty,
-                        random(offx[0], offx[1]),
-                        random(offy[0], offy[1]),
-                        this.i
-                    )
-                );
-            }
-        } else {
-            this.points = this.points.splice(0, newPoints.length);
-            for (let i = 0; i < this.points.length; i++) {
-                this.points[i].tx = newPoints[i].tx;
-                this.points[i].ty = newPoints[i].ty;
-            }
-        }
+  display() {
+    for (let point of this.points) {
+      point.move();
+
+      point.display();
     }
-
-    display() {
-        for (let point of this.points) {
-            point.move();
-
-            point.display();
-        }
-    }
+  }
 }
 
 class Point {
-    constructor(tx, ty, x, y, i) {
-        this.x = x;
-        this.y = y;
-        this.ax = random(-0.03, 0.03);
-        this.ay = random(-0.03, 0.03);
-        this.tx = tx;
-        this.ty = ty;
+  constructor(tx, ty, x, y, i) {
+    this.x = x;
+    this.y = y;
+    this.ax = random(-0.03, 0.03);
+    this.ay = random(-0.03, 0.03);
+    this.tx = tx;
+    this.ty = ty;
 
-        this.ox = x;
-        this.oy = y;
+    this.ox = x;
+    this.oy = y;
 
-        this.i = i;
+    this.i = i;
 
-        this.temptx = 0;
-        this.tempty = 0;
-        this.dx = 0;
+    this.temptx = 0;
+    this.tempty = 0;
+    this.dx = 0;
+  }
+
+  display() {
+    let h = noise(
+      (this.x * noiseVal) / 2,
+      (this.y * noiseVal) / 2,
+      (frameCount * noiseVal) / 2
+    );
+    let hm = map(h, 0, 1, 0, 100);
+    fill((hm + frameCount + 25 * this.i) % 100, 100, 100);
+    ellipse(this.x, this.y, 5, 5);
+  }
+
+  move() {
+    // let dx = noise(
+    //   this.x * noiseVal + this.ax,
+    //   this.y * noiseVal + this.ax,
+    //   frameCount * this.ax
+    // );
+    // let dy = noise(
+    //   this.x * noiseVal + this.ay,
+    //   this.y * noiseVal + this.ay,
+    //   frameCount * this.ay
+    // );
+    // let ddx = map(dx, 0, 1, -2, 2);
+    // let ddy = map(dy, 0, 1, -2, 2);
+
+    let delx = this.tx - this.x;
+    let dely = this.ty - this.y;
+
+    let angle = atan2(delx, dely);
+
+    let ax = sin(angle);
+    let ay = cos(angle);
+    let d = dist(this.x, this.y, this.tx, this.ty);
+    let ds = map(d, 0, hypotenuse, 3, 5);
+    this.tx += sin(frameCount * 8 + this.ty + this.i * 90);
+    this.ty += cos(frameCount * 3 + this.tx + this.i * 90) / 2;
+    if (d > 2) {
+      this.x += ax * ds;
+      this.y += ay * ds;
+      // this.x += ddx;
+      // this.y += ddy;
+    } else if (d > 0.5) {
+      // this.x += (ax * ds) / 20;
+      // this.y += (ay * ds) / 20;
+      // this.x += ddx;
+      // this.y += ddy;
+    } else {
+      this.x = this.tx;
+      this.y = this.ty;
     }
-
-    display() {
-        let h = noise(
-            (this.x * noiseVal) / 2,
-            (this.y * noiseVal) / 2,
-            (frameCount * noiseVal) / 2
-        );
-        let hm = map(h, 0, 1, 0, 100);
-        fill((hm + frameCount + 25 * this.i) % 100, 100, 100);
-        ellipse(this.x, this.y, 5, 5);
-    }
-
-    move() {
-        let dx = noise(
-            this.x * noiseVal + this.ax,
-            this.y * noiseVal + this.ax,
-            frameCount * this.ax
-        );
-        let dy = noise(
-            this.x * noiseVal + this.ay,
-            this.y * noiseVal + this.ay,
-            frameCount * this.ay
-        );
-        let ddx = map(dx, 0, 1, -2, 2);
-        let ddy = map(dy, 0, 1, -2, 2);
-
-        let delx = this.tx - this.x;
-        let dely = this.ty - this.y;
-
-        let angle = atan2(delx, dely);
-
-        let ax = sin(angle);
-        let ay = cos(angle);
-        let d = dist(this.x, this.y, this.tx, this.ty);
-        let ds = map(d, 0, hypotenuse, 3, 5);
-
-        if (d > 2) {
-            this.x += ax * ds;
-            this.y += ay * ds;
-            this.x += ddx;
-            this.y += ddy;
-        } else if (d > 0.5) {
-            this.x += (ax * ds) / 20;
-            this.y += (ay * ds) / 20;
-            this.x += ddx;
-            this.y += ddy;
-        } else {
-            this.x = this.tx;
-            this.y = this.ty;
-        }
-
-        this.tx += sin(frameCount * 8 + this.ty + this.i * 90);
-        this.ty += cos(frameCount * 3 + this.tx + this.i * 90) / 2;
-    }
+  }
 }
