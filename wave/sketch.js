@@ -11,7 +11,7 @@ function setup() {
 }
 let s = [];
 let noiseVal;
-let SPACE = 20;
+let SPACE = 10;
 let DETAIL = 75;
 let bg;
 let bg1;
@@ -24,12 +24,12 @@ let currMode;
 const loadBg = () => {
 	bg = random(360);
 	bg1 = color(bg, 80, 50);
-	bg2 = color(bg, 80, 100);
+	bg2 = color(bg, 80, 150);
 };
 
 const setNoise = () => {
 	noiseVal = random(0.0008, 0.003);
-	frameOff = random(100, 200);
+	frameOff = random(100, 800);
 	currMode = modes[mI % modes.length];
 };
 
@@ -42,7 +42,7 @@ function keyPressed() {
 	}
 }
 function draw() {
-	background(220);
+	background(190);
 	let gradient = drawingContext.createLinearGradient(0, height, 0, 0);
 	gradient.addColorStop(0, bg1.toString("#rrggbbaa"));
 
@@ -56,7 +56,7 @@ function draw() {
 		s[i].display();
 	}
 
-	noiseVal += sin((frameCount)/2 + frameOff) / 800000;
+	noiseVal += sin((frameCount)/5 + frameOff) / 800000;
 
 	if (frameCount % 20000 === 0) {
 		mI++;
@@ -66,7 +66,7 @@ function draw() {
 }
 
 const loadSlices = () => {
-	for (let i = 15; i > 0; i--) {
+	for (let i = 30; i > 0; i--) {
 		s.push(
 			new Slice(width / 2 + 160 - i * SPACE, height / 2 + 200 - i * SPACE, i)
 		);
@@ -90,7 +90,7 @@ class Slice {
 				cos(
 					noise(
 						i * noiseVal,
-						((frameCount)/2 + frameOff - this.i * 20) * noiseVal
+						((frameCount)/2 + frameOff - this.i * 10) * noiseVal
 					) * 1800
 				) * 100;
 			p.push({ x: i, y: n });
@@ -111,8 +111,8 @@ class Slice {
 				let hex = color(
 					(h + (frameCount)/2 + frameOff + this.i * 3) % 360,
 					360,
-					360 - this.i * 20,
-					220
+					360 - this.i * 5,
+					190
 				).toString("#rrggbbaa");
 				gradient.addColorStop(i / 4, hex);
 			}
@@ -125,14 +125,14 @@ class Slice {
 			let col1 = color(
 				(bg + 180 + ((frameCount)/2 + frameOff) / 10) % 360,
 				360,
-				300 - this.i * 10,
-				220
+				300 - this.i * 5,
+				190
 			);
 			let col2 = color(
 				(bg + 180 + 50 + ((frameCount)/2 + frameOff) / 10) % 360,
 				360,
-				300 - this.i * 10,
-				220
+				300 - this.i * 5,
+				190
 			);
 			gradient.addColorStop(0, col1.toString("#rrggbbaa"));
 			gradient.addColorStop(1, col2.toString("#rrggbbaa"));
