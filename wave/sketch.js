@@ -56,7 +56,7 @@ function draw() {
 		s[i].display();
 	}
 
-	noiseVal += sin(frameCount + frameOff) / 800000;
+	noiseVal += sin((frameCount)/2 + frameOff) / 800000;
 
 	if (frameCount % 20000 === 0) {
 		mI++;
@@ -90,7 +90,7 @@ class Slice {
 				cos(
 					noise(
 						i * noiseVal,
-						(frameCount + frameOff - this.i * 20) * noiseVal
+						((frameCount)/2 + frameOff - this.i * 20) * noiseVal
 					) * 1800
 				) * 100;
 			p.push({ x: i, y: n });
@@ -109,7 +109,7 @@ class Slice {
 				let h = map(i, 0, 4, 0, 70);
 
 				let hex = color(
-					(h + frameCount + frameOff + this.i * 3) % 360,
+					(h + (frameCount)/2 + frameOff + this.i * 3) % 360,
 					360,
 					360 - this.i * 20,
 					220
@@ -123,13 +123,13 @@ class Slice {
 			drawingContext.fillStyle = gradient;
 		} else if (currMode === "rainbow2") {
 			let col1 = color(
-				(bg + 180 + (frameCount + frameOff) / 10) % 360,
+				(bg + 180 + ((frameCount)/2 + frameOff) / 10) % 360,
 				360,
 				300 - this.i * 10,
 				220
 			);
 			let col2 = color(
-				(bg + 180 + 50 + (frameCount + frameOff) / 10) % 360,
+				(bg + 180 + 50 + ((frameCount)/2 + frameOff) / 10) % 360,
 				360,
 				300 - this.i * 10,
 				220
