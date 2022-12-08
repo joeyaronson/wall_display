@@ -56,7 +56,7 @@ function draw() {
 		s[i].display();
 	}
 
-	noiseVal += sin((frameCount)/5 + frameOff) / 800000;
+	noiseVal += sin((frameCount)/5 + frameOff) / 1000000;
 
 	if (frameCount % 20000 === 0) {
 		mI++;
