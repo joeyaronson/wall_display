@@ -1,11 +1,10 @@
-
 const paths = [
     "abstract",
-    "arcclock",
+    "arc_clock",
     "balls",
     "boxes",
     "cacti",
-    "cellclock",
+    "cell_clock",
     "cells",
     "cubes",
     "drip",
@@ -15,19 +14,19 @@ const paths = [
     "flower",
     "graph",
     "grid",
-    "growclock",
+    "grow_clock",
     "hallway",
-    "lightclock",
+    "light_clock",
     "mandala",
     "mandala3D",
     "orb",
     "rainbow",
-    "sin",
+    "sin_wave",
     "swarm",
-    "swarmclock",
+    "swarm_clock",
     "tiedye",
     "tiles",
-    "tilewave",
+    "tile_wave",
     "void",
     "wave",
     "wiggles",
@@ -79,7 +78,7 @@ const choosePage = (sleep) => {
     do {
         randomPath = ranChoice(paths)
     } while (location.href.includes(randomPath))
-    location.href = `${sleep ? "." : ".."}/${randomPath}/index.html`
+    location.href = `${sleep ? "." : ".."}/${randomPath.replaceAll("_", "")}/index.html`
 }
 
 const isArtPage = () => {

@@ -1,10 +1,10 @@
 const paths = [
   "abstract",
-  "arcclock",
+  "arc_clock",
   "balls",
   "boxes",
   "cacti",
-  "cellclock",
+  "cell_clock",
   "cells",
   "cubes",
   "drip",
@@ -14,19 +14,19 @@ const paths = [
   "flower",
   "graph",
   "grid",
-  "growclock",
+  "grow_clock",
   "hallway",
-  "lightclock",
+  "light_clock",
   "mandala",
   "mandala3D",
   "orb",
   "rainbow",
-  "sin",
+  "sin_wave",
   "swarm",
-  "swarmclock",
+  "swarm_clock",
   "tiedye",
   "tiles",
-  "tilewave",
+  "tile_wave",
   "void",
   "wave",
   "wiggles",
@@ -34,10 +34,10 @@ const paths = [
 let p = [];
 
 let w = 340;
-let h = 50;
+let h = 40;
 
 let activeIndex = 0;
-const padding = 70;
+const padding = 50;
 
 const buttons = ["reboot", "home", "previous", "next", "select"];
 function setup() {
@@ -86,7 +86,7 @@ function keyPressed() {
     if (newPath === "random") {
       newPath = random(paths);
     }
-    location.href = `./${newPath}/index.html`;
+    location.href = `./${newPath.replaceAll("_","")}/index.html`;
   }
 }
 
