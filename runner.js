@@ -77,10 +77,10 @@ const choosePage = (sleep) => {
     let randomPath
     do {
         randomPath = ranChoice(paths)
-    } while (location.href.includes(randomPath))
+    } while (location.href.includes(randomPath.replaceAll("_", "")))
     location.href = `${sleep ? "." : ".."}/${randomPath.replaceAll("_", "")}/index.html`
 }
 
 const isArtPage = () => {
-    return paths.some(x => location.href.includes(x))
+    return paths.some(x => location.href.includes(x.replaceAll("_", "")))
 }
