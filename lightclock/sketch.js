@@ -5,6 +5,7 @@ function preload() {
 
 function setup() {
   createCanvas(720, 1280);
+  background(0)
   hypotenuse = sqrt(width * width + height * height);
   colorMode(HSB, 100);
   angleMode(DEGREES);
