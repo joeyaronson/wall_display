@@ -58,6 +58,8 @@ let timer = 0;
 let interact = false;
 const INTERACTION_KEY = 53;
 function keyPressed() {
+  print(frameRate());
+
   if (keyCode === INTERACTION_KEY) {
     if (interact) {
       timer = 350;
@@ -70,7 +72,7 @@ function keyPressed() {
 
 const loadPoints = (num, x, y) => {
   return font.textToPoints(String(num), x, y, 700, {
-    sampleFactor: 0.25,
+    sampleFactor: 0.2,
     simplifyThreshold: 0,
   });
 };
@@ -112,16 +114,17 @@ function draw() {
   for (let num of n) {
     num.display();
   }
-
-  let d = new Date();
-  if (!interact && d.getMinutes() != globalMin) {
-    let timeArr = calculateTime();
-    for (let i = 0; i < n.length; i++) {
-      if (timeArr[i] !== n[i].num) {
-        n[i].changeNum(timeArr[i]);
+  if (frameCount % 10 === 0) {
+    let d = new Date();
+    if (!interact && d.getMinutes() != globalMin) {
+      let timeArr = calculateTime();
+      for (let i = 0; i < n.length; i++) {
+        if (timeArr[i] !== n[i].num) {
+          n[i].changeNum(timeArr[i]);
+        }
       }
+      globalMin = d.getMinutes();
     }
-    globalMin = d.getMinutes();
   }
 
   if (interact) {
@@ -216,7 +219,6 @@ class Num {
   }
 
   display() {
-
     stroke((frameCount + this.i * 25) % 100, 30, 100, 5);
 
     for (let i = 0; i < this.points.length; i++) {
@@ -228,8 +230,6 @@ class Num {
       if (i % 2 === 0) {
         line(currPoint.x, currPoint.y, width / 2, height / 2);
       }
-
-      let h = map(i, 0, this.points.length, 0, 1000);
 
       strokeWeight(2.5);
 
@@ -269,18 +269,19 @@ class Point {
   }
 
   move() {
-    let delx = this.tx - this.x;
-    let dely = this.ty - this.y;
-
-    let angle = atan2(delx, dely);
-
-    let ax = sin(angle);
-    let ay = cos(angle);
     let d = dist(this.x, this.y, this.tx, this.ty);
-    let ds = map(d, 0, hypotenuse, 3, 5);
     this.tx += sin(frameCount * 8 + this.ty + this.i * 90);
     this.ty += cos(frameCount * 3 + this.tx + this.i * 90);
     if (d > 2) {
+      let delx = this.tx - this.x;
+      let dely = this.ty - this.y;
+
+      let angle = atan2(delx, dely);
+
+      let ax = sin(angle);
+      let ay = cos(angle);
+      let ds = map(d, 0, hypotenuse, 3, 5);
+
       this.x += ax * ds;
       this.y += ay * ds;
     } else {
