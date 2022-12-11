@@ -21,6 +21,7 @@ const paths = [
   "mandala3D",
   "orb",
   "rainbow",
+  "rps",
   "sin_wave",
   "swarm",
   "swarm_clock",
@@ -86,7 +87,7 @@ function keyPressed() {
     if (newPath === "random") {
       newPath = random(paths);
     }
-    location.href = `./${newPath.replaceAll("_","")}/index.html`;
+    location.href = `./${newPath.replaceAll("_", "")}/index.html`;
   }
 }
 

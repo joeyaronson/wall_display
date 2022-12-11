@@ -21,6 +21,7 @@ const paths = [
     "mandala3D",
     "orb",
     "rainbow",
+    "rps",
     "sin_wave",
     "swarm",
     "swarm_clock",
