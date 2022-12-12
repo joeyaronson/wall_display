@@ -108,12 +108,6 @@ function draw() {
     text(buttons[i], offset, heightOff - 15);
   }
 
-  line(350,0,350,height)
-  line(425,0,425,height)
-  line(525,0,525,height)
-  line(600,0,600,height)
-  line(700,0,700,height)
-
 }
 
 class Page {
