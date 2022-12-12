@@ -34,11 +34,11 @@ const paths = [
 ];
 let p = [];
 
-let w = 340;
-let h = 40;
+let w = 500;
+let h = 60;
 
 let activeIndex = 0;
-const padding = 50;
+const padding = 80;
 
 const buttons = ["reboot", "home", "previous", "next", "select"];
 function setup() {
@@ -47,7 +47,7 @@ function setup() {
   textAlign(CENTER, CENTER);
   colorMode(HSB, 100);
 
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   paths.push("random")
   loadPages();
 }
@@ -106,6 +106,10 @@ function draw() {
     let heightOff = height - (i % 2 === 0 ? 60 : 80);
     line(offset, height, offset, heightOff);
     text(buttons[i], offset, heightOff - 15);
+  }
+
+  for(let i = 0; i < width; i+=50){
+    line(i,0,i,height)
   }
 }
 
