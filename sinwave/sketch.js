@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   rot = 2;
   rot2 = 0.02;
   o = 0;

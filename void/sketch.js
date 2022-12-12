@@ -1,7 +1,7 @@
 let SIZE = 20;
 let b = [];
 function setup() {
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   colorMode(HSB, 100);
   angleMode(DEGREES);
   loadBoxes();

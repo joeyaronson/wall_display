@@ -4,7 +4,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   hypotenuse = sqrt(width * width + height * height);
   colorMode(HSB, 100);
   angleMode(DEGREES);
@@ -14,32 +14,32 @@ function setup() {
   noStroke();
   pos = [
     {
-      x: 70,
-      y: 580,
+      x: 150,
+      y: 900,
       offx: [-10, -100],
       offy: [-10, -100],
       xbound: [0, width / 2],
       ybound: [0, height / 2],
     },
     {
-      x: 430,
-      y: 580,
+      x: 650,
+      y: 900,
       offx: [width + 50, width + 100],
       offy: [-50, -100],
       xbound: [width / 2, width],
       ybound: [0, height / 2],
     },
     {
-      x: 70,
-      y: 1220,
+      x: 150,
+      y: 1850,
       offx: [50, 100],
       offy: [height + 50, height + 100],
       xbound: [0, width / 2],
       ybound: [height / 2, height],
     },
     {
-      x: 430,
-      y: 1220,
+      x: 650,
+      y: 1850,
       offx: [width + 50, width + 100],
       offy: [height + 50, height + 100],
       xbound: [width / 2, width],
@@ -70,7 +70,7 @@ function keyPressed() {
 }
 
 const loadPoints = (num, x, y) => {
-  return font.textToPoints(String(num), x, y, 700, {
+  return font.textToPoints(String(num), x, y, 1050, {
     sampleFactor: 0.15,
     simplifyThreshold: 0,
   });
@@ -282,7 +282,7 @@ class Point {
     let ay = cos(angle);
     let d = dist(this.x, this.y, this.tx, this.ty);
     let ds = map(d, 0, hypotenuse, 3, 5);
-    this.tx += sin(frameCount * 8 + this.ty + this.i * 90)/2;
+    this.tx += sin(frameCount * 8 + this.ty + this.i * 90) / 2;
     this.ty += cos(frameCount * 3 + this.tx + this.i * 90) / 3;
     if (d > 2) {
       this.x += ax * ds;

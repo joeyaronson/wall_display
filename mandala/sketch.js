@@ -1,6 +1,6 @@
 function setup() {
   rectMode(CENTER);
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
 
   background(0);
   modes = [ellipse, rect];

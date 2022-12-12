@@ -2,8 +2,8 @@
 // VARIABLES
 ///////////////////////////////////////////////////////////////////////////////////
 let t = [];
-let SIZE = 80;
-let sizeOpts = [80];
+let SIZE = 120;
+let sizeOpts = [120];
 let phase = "wait";
 let sw = 20;
 let counter = 0;
@@ -28,7 +28,7 @@ const restart = () => {
   SIZE = random(sizeOpts);
   counter = 0;
   waitCounter = 0;
-  sw = random(8, 16);
+  sw = random(16, 20);
   loadTiles();
   chooseMovingTiles();
   chooseColors();
@@ -130,7 +130,7 @@ const phaseChanger = () => {
 function setup() {
   rectMode(CENTER);
   angleMode(DEGREES);
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   restart();
 }
 

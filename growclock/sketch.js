@@ -520,7 +520,7 @@ const zero = [
   let timeCodes = [zero, one, two, three, four, five, six, seven, eight, nine];
   
   function setup() {
-	createCanvas(720, 1280);
+	createCanvas(1080, 1920);
 	rectMode(CENTER);
 	angleMode(DEGREES);
 	colorMode(HSB, 100);
@@ -560,7 +560,7 @@ const zero = [
 	fc = 0;
   };
   
-  const SIZE = 10;
+  const SIZE = 15;
   let noiseVal = 0.01;
   let fc = 0;
   const loadTiles = () => {
@@ -627,10 +627,10 @@ const zero = [
 	}
   }
   const centerMapping = [
-	{ x: 200, y: 340 },
-	{ x: 500, y: 340 },
-	{ x: 200, y: 940 },
-	{ x: 500, y: 940 },
+	{ x: 270, y: 510 },
+	{ x: 750, y: 510 },
+	{ x: 270, y: 1420 },
+	{ x: 750, y: 1420 },
   ];
   
   class Tile {
@@ -666,7 +666,7 @@ const zero = [
 		  this.phase = "out";
 		}
 	  }
-	  if (this.d > 50 && this.dir === -1) {
+	  if (this.d > 100 && this.dir === -1) {
 		this.dir *= -1;
 	  }
   

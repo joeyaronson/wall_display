@@ -1,7 +1,7 @@
 function setup() {
   angleMode(DEGREES);
   colorMode(HSB, 100);
-  createCanvas(720, 1280, WEBGL);
+  createCanvas(1080, 1920, WEBGL);
   normalMaterial();
   loadCacti();
   noStroke();

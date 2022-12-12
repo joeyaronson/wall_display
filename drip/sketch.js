@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   angleMode(DEGREES);
   colorMode(HSB, 360);
   strokeWeight(0.2);

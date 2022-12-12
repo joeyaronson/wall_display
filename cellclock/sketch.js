@@ -1,5 +1,5 @@
 function setup() {
-	createCanvas(720, 1280);
+	createCanvas(1080, 1920);
 	colorMode(HSB, 100);
 	loadTiles();
 	noStroke();
@@ -610,7 +610,7 @@ function setup() {
   let t = [];
   let staticCounter = 0;
   let frameBuffer = [];
-  let SIZE = 10;
+  let SIZE = 15;
   let globalMin;
   const loadTiles = () => {
 	let timeArr = calculateTime();

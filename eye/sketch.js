@@ -1,6 +1,6 @@
 //2018 joey aronson
 function setup() {
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   angleMode(DEGREES);
   strokeWeight(2.3);
   colorMode(HSB, 100);
@@ -35,7 +35,7 @@ let x = 0;
 
 let dir = -1;
 function draw() {
-  background(0, 4);
+  background(0, 3);
   noFill();
 
   for (let i = 0; i < b.length; i++) {
@@ -59,7 +59,8 @@ class Burst {
 
   display() {
     fill(255, 0.1);
-    stroke(this.c % 100, 100, 100);
+    let b = map(this.size,-200,height-100,0,100)
+    stroke(this.c % 100, 100, b);
 
     beginShape();
     for (let i = 1; i < 360; i += 1) {

@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   strokeWeight(0.1);
   colorMode(HSB, 100);
   angleMode(DEGREES);
@@ -8,7 +8,7 @@ function setup() {
 }
 let n = [];
 let FRAMES = 50;
-let COUNT = 180;
+let COUNT = 300;
 let OFFSET = 100;
 
 function draw() {

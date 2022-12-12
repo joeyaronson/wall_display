@@ -1,5 +1,5 @@
 setup = () => {
-	createCanvas(720, 1280, WEBGL);
+	createCanvas(1080, 1920, WEBGL);
 	rectMode(CENTER);
 	angleMode(DEGREES);
 	SIZE = width / 30;

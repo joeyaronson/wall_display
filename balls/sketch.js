@@ -1,6 +1,6 @@
 function setup() {
     noStroke();
-    createCanvas(720, 1280);
+    createCanvas(1080, 1920);
     rectMode(CENTER);
     angleMode(DEGREES);
     choseColors();

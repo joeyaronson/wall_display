@@ -1,6 +1,6 @@
 let p = [];
 function setup() {
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   textSize(width / 30);
   colorMode(HSB, 100);
   textAlign(CENTER);

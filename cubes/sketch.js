@@ -4,7 +4,7 @@ let NOISE_VAL = 0.004;
 let b = [];
 let fc;
 function setup() {
-  createCanvas(720, 1280, WEBGL);
+  createCanvas(1080, 1920, WEBGL);
   colorMode(HSB, 360);
   angleMode(DEGREES);
   rectMode(CENTER);

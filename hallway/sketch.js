@@ -2,7 +2,7 @@ function setup() {
   rectMode(CENTER);
   colorMode(HSB, 100);
   angleMode(DEGREES);
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   loadRand();
 }
 let r = [];
@@ -189,7 +189,7 @@ class Rec {
     this.s += this.s2;
     this.s2 += 0.01;
 
-    if (this.s > 800) {
+    if (this.s > 1100) {
       this.burnt = true;
     }
   }

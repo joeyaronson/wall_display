@@ -3,7 +3,7 @@
 //Click to cycle through color modes
 function setup() {
   //angleMode(DEGREES);
-  createCanvas(720, 1280);
+  createCanvas(1080, 1920);
   strokeWeight(0.5);
   noStroke();
   colorMode(HSB, 100);
@@ -21,7 +21,7 @@ function keyPressed() {
 }
 
 function draw() {
-  p.push(new Particle(width / 2, height / 2));
+  p.push(new Particle(width / 2, height / 2, mode));
 
   if (frameCount % 2000 === 0) {
     changeMode();
@@ -59,11 +59,12 @@ const changeMode = () => {
 };
 
 class Particle {
-  constructor(x, y) {
+  constructor(x, y, mode) {
     this.x = x;
     this.y = y;
     this.s = 0;
     this.t = 0;
+    this.mode = mode;
 
     //starting angle
     this.degx = random(0, 1);
@@ -88,15 +89,15 @@ class Particle {
   }
 
   display() {
-    if (mode === "dark") {
+    if (this.mode === "dark") {
       fill(0, 0, 0);
       stroke(100 - this.hue, 100, 100);
     }
-    if (mode === "color") {
+    if (this.mode === "color") {
       fill(this.hue, 100, 100);
       stroke(100 - this.hue, 100, 100);
     }
-    if (mode === "dim") {
+    if (this.mode === "dim") {
       fill(this.hue, 80, 80);
       stroke(0, 0, 0);
     }

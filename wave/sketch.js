@@ -1,5 +1,5 @@
 function setup() {
-	createCanvas(720, 1280);
+	createCanvas(1080, 1920);
 	rectMode(CENTER);
 	colorMode(HSB, 360);
 	angleMode(DEGREES);
@@ -66,9 +66,9 @@ function draw() {
 }
 
 const loadSlices = () => {
-	for (let i = 30; i > 0; i--) {
+	for (let i = 40; i > 0; i--) {
 		s.push(
-			new Slice(width / 2 + 160 - i * SPACE, height / 2 + 200 - i * SPACE, i)
+			new Slice(width / 2 + 200 - i * SPACE, height / 2 + 200 - i * SPACE, i)
 		);
 	}
 };
@@ -78,14 +78,14 @@ class Slice {
 		this.x = x;
 		this.y = y;
 		this.i = i;
-		this.w = 400;
+		this.w = 600;
 		this.h = 150;
 		this.p = [];
 	}
 
 	calculateP() {
 		let p = [];
-		for (let i = 0; i < this.w; i += this.w / DETAIL) {
+		for (let i = 0; i <= this.w; i += this.w / DETAIL) {
 			let n =
 				cos(
 					noise(

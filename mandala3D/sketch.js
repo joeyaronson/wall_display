@@ -1,7 +1,7 @@
 function setup() {
   rectMode(CENTER);
   angleMode(DEGREES);
-  createCanvas(720, 1280, WEBGL);
+  createCanvas(1080, 1920, WEBGL);
   setVars();
 }
 
