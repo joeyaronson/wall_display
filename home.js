@@ -102,15 +102,18 @@ function draw() {
   fill(59, 22, 30);
 
   for (let i = 0; i < buttons.length; i++) {
-    let offset = 240 + i * 55;
+    let offset = 350 + i * 85;
     let heightOff = height - (i % 2 === 0 ? 60 : 80);
     line(offset, height, offset, heightOff);
     text(buttons[i], offset, heightOff - 15);
   }
 
-  for(let i = 0; i < width; i+=50){
-    line(i,0,i,height)
-  }
+  line(350,0,350,height)
+  line(425,0,425,height)
+  line(525,0,525,height)
+  line(600,0,600,height)
+  line(700,0,700,height)
+
 }
 
 class Page {
