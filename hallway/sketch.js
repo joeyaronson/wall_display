@@ -47,7 +47,7 @@ function draw() {
   let nOffx = sin(cos(frameCount / 2) * 360) * 20;
   let nOffy = cos(sin(frameCount / 2) * 360) * 20;
 
-  if (frameCount % 8 === 0 && !wait) {
+  if (frameCount % 16 === 0 && !wait) {
     r.unshift(
       new Rec(
         width / 2 + nOffx,
@@ -131,7 +131,7 @@ class Rec {
     this.x = x;
     this.y = y;
     this.s = s;
-    this.s2 = 0.001;
+    this.s2 = 0.01;
     this.burnt = false;
     this.c = c;
     this.mode = mode;
