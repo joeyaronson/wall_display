@@ -63,7 +63,9 @@ function draw() {
 
   for (let i = 0; i < p.length; i++) {
     p[i].move();
-    p[i].checkCollision();
+    if (frameCount % 2 === 0) {
+      p[i].checkCollision();
+    }
     p[i].display();
   }
 

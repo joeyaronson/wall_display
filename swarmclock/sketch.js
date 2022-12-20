@@ -71,7 +71,7 @@ function keyPressed() {
 
 const loadPoints = (num, x, y) => {
   return font.textToPoints(String(num), x, y, 1050, {
-    sampleFactor: 0.15,
+    sampleFactor: 0.10,
     simplifyThreshold: 0,
   });
 };
@@ -108,7 +108,7 @@ const calculateTime = () => {
 };
 
 function draw() {
-  background(0, 50);
+  background(0, 30);
   for (let num of n) {
     num.display();
   }
@@ -256,7 +256,7 @@ class Point {
     );
     let hm = map(h, 0, 1, 0, 100);
     fill((hm + frameCount + 25 * this.i) % 100, 100, 100);
-    ellipse(this.x, this.y, 5, 5);
+    ellipse(this.x, this.y, 10, 10);
   }
 
   move() {

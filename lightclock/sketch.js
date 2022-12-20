@@ -221,20 +221,20 @@ class Num {
   }
 
   display() {
-    stroke((frameCount + this.i * 25) % 100, 30, 100, 5);
+    stroke((frameCount + this.i * 25) % 100, 30, 100, 1);
 
     for (let i = 0; i < this.points.length; i++) {
       this.points[i].move();
       let currPoint = this.points[i];
       let nextPoint = this.points[(i + 1) % this.points.length];
 
-      strokeWeight(0.5);
-      if (i % 2 === 0) {
+      strokeWeight(1);
+      if (i % 3 === 0) {
         line(currPoint.x, currPoint.y, width / 2, height / 2);
       }
       stroke((frameCount + this.i * 25) % 100, 50, 100, 5);
 
-      strokeWeight(2.5);
+      strokeWeight(3.5);
 
       if (
         dist(currPoint.x, currPoint.y, nextPoint.x, nextPoint.y) < 50 &&

@@ -32,12 +32,13 @@ function draw() {
 }
 
 function makeNodes() {
-  let count = 24;
+  let count = 36;
   nodes.splice(0, nodes.length);
   num = 360 / count;
 
   let counter = 0;
   for (let i = 0; i < 360; i += num) {
+    print(i)
     nodes.push(new node(width / 2, height / 2, i, counter));
     counter++;
   }
