@@ -12,6 +12,7 @@ const paths = [
   "eye",
   "fireflies",
   "flower",
+  "geometry",
   "graph",
   "grid",
   "grow_clock",
