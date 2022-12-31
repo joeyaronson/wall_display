@@ -20,6 +20,7 @@ const paths = [
   "light_clock",
   "mandala",
   "mandala3D",
+  "mondrian",
   "orb",
   "rainbow",
   "rps",
