@@ -24,6 +24,7 @@ const paths = [
     "mondrian",
     "orb",
     "rainbow",
+    "rhombus",
     "rps",
     "sin_wave",
     "swarm",
