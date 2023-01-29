@@ -17,6 +17,7 @@ const paths = [
   "grid",
   "grow_clock",
   "hallway",
+  "hills",
   "hypercube",
   "light_clock",
   "mandala",
