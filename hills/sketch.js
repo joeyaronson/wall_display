@@ -94,7 +94,7 @@ class Hill {
     } else {
       vertex(-100, -100);
     }
-    for (let i = -5; i < height + 5; i += 5) {
+    for (let i = -10; i < height + 10; i += 10) {
       let off =
         noise(
           (i + this.off) * this.noiseVal,
@@ -137,7 +137,7 @@ class Hill {
     beginShape();
     vertex(-100, height + 100);
 
-    for (let i = -5; i < width + 5; i += 5) {
+    for (let i = -10; i < width + 10; i += 10) {
       let off =
         noise(
           (i + this.off) * this.noiseVal,
