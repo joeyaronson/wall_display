@@ -41,7 +41,7 @@ let p = [];
 
 let w = 500;
 let h = 60;
-
+let keyCooloff = 0;
 let activeIndex = 0;
 const padding = 80;
 
@@ -79,15 +79,7 @@ const LEFT_KEY = 51;
 const RIGHT_KEY = 52;
 const INTERACTION_KEY = 53;
 function keyPressed() {
-  print(keyCode === INTERACTION_KEY);
-  if (keyCode === RIGHT_KEY) {
-    activeIndex = (activeIndex + 1) % p.length;
-  } else if (keyCode === LEFT_KEY) {
-    activeIndex = activeIndex - 1;
-    if (activeIndex < 0) {
-      activeIndex += p.length;
-    }
-  } else if (keyCode === INTERACTION_KEY) {
+  if (keyCode === INTERACTION_KEY) {
     let newPath = paths[activeIndex];
     if (newPath === "random") {
       newPath = random(paths);
@@ -112,6 +104,20 @@ function draw() {
     line(offset, height, offset, heightOff);
     text(buttons[i], offset, heightOff - 15);
   }
+  if (keyCooloff > 5) {
+    if (keyIsDown(RIGHT_KEY)) {
+      activeIndex = (activeIndex + 1) % p.length;
+    } else if (keyIsDown(LEFT_KEY)) {
+      activeIndex = activeIndex - 1;
+      if (activeIndex < 0) {
+        activeIndex += p.length;
+      }
+    }
+    keyCooloff = 0;
+
+  }
+
+  keyCooloff++;
 
 }
 
