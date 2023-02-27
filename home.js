@@ -33,6 +33,7 @@ const paths = [
   "tiedye",
   "tiles",
   "tile_wave",
+  "tree",
   "void",
   "wave",
   "wiggles",
