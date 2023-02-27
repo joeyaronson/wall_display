@@ -53,7 +53,7 @@ function draw() {
 		tree.move();
 	}
 
-	if (frameCount % 10000 === 0) {
+	if (frameCount % 5000 === 0) {
 		restart();
 	}
 }
