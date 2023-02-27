@@ -6,6 +6,7 @@ function setup() {
 
 	noStroke();
 	restart();
+	console.log("test")
 }
 let fruitHue;
 let t = [];

@@ -57,7 +57,10 @@ setInterval(() => {
     if (d.getHours() === 10 && !isArtPage()) {
         choosePage(true);
     }
-    document.getElementById('defaultCanvas0').focus()
+    let canv = document.getElementById('defaultCanvas0')
+    if(canv){
+        canv.focus()
+    }
 
 }, 10000);
 
