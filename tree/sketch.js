@@ -6,7 +6,6 @@ function setup() {
 
 	noStroke();
 	restart();
-	console.log("test")
 }
 let fruitHue;
 let t = [];
@@ -54,7 +53,7 @@ function draw() {
 		tree.move();
 	}
 
-	if (frameCount % 10000 === 0) {
+	if (frameCount % 5000 === 0) {
 		restart();
 	}
 }
@@ -93,8 +92,8 @@ class Tree {
 				);
 			}
 		}
-		if (this.depth > 2) {
-			let numFruit = random(0, 5);
+		if (this.depth > 3) {
+			let numFruit = random(0, 4);
 			for (let i = 0; i < numFruit; i++) {
 				this.fruit.push(
 					new Fruit(
