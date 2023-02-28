@@ -83,6 +83,10 @@ function draw() {
     box.display();
     box.move();
   }
+
+  if(frameCount % 5000 === 0){
+    restart()
+  }
 }
 
 class Box {
