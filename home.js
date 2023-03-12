@@ -6,6 +6,7 @@ const paths = [
   "cacti",
   "cell_clock",
   "cells",
+  "checkerboard",
   "cubes",
   "drip",
   "exclusion",

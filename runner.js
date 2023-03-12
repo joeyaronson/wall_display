@@ -6,6 +6,7 @@ const paths = [
     "cacti",
     "cell_clock",
     "cells",
+    "checkerboard",
     "cubes",
     "drip",
     "exclusion",
@@ -59,7 +60,7 @@ setInterval(() => {
         choosePage(true);
     }
     let canv = document.getElementById('defaultCanvas0')
-    if(canv){
+    if (canv) {
         canv.focus()
     }
 
