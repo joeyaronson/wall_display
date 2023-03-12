@@ -20,7 +20,6 @@ let w = [];
 
 let moveModes = ["linear", "static", "sin", "slide"];
 let colorModes = ["black", "white", "rgbl", "rgbd", "cmykl", "cmykd"];
-let blurModes = ["off", "on"];
 
 const INTERACTION_KEY = 53;
 function keyPressed() {
@@ -33,9 +32,8 @@ const restart = () => {
   w = [];
   moveModes = shuffle(moveModes);
   colorModes = shuffle(colorModes);
-  blurModes = shuffle(blurModes);
   RAN1 = random(1, 5);
-  RAN2 = random(10, 30);
+  RAN2 = random(10, 25);
   RAN3 = random(1, 15);
   RAN4 = random(0, 360);
   RAN5 = random(100, 400);
@@ -53,14 +51,12 @@ const loadWaves = () => {
 function draw() {
   currentMoveMode = moveModes[0];
   currentColorMode = colorModes[0];
-  currentBlurMode = blurModes[0];
   fc = frameCount + RAN4;
   blendMode(BLEND);
-  let bo = currentBlurMode === "on" ? 70 : 255;
   if (["black", "cmykd", "rgbd"].includes(currentColorMode)) {
-    background(0, bo);
+    background(0);
   } else if (["white", "cmykl", "rgbl"].includes(currentColorMode)) {
-    background(255, bo);
+    background(255);
   }
   blendMode(EXCLUSION);
 
@@ -95,7 +91,7 @@ class Wave {
 
     beginShape();
     vertex(width / 2, 0);
-    for (let i = 0; i < height; i += 5) {
+    for (let i = 0; i < height; i += 15) {
       let d = map(abs(height / 2 - i), 0, height / 2, 360, 10);
 
       vertex(
