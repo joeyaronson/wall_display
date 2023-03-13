@@ -38,7 +38,6 @@ function makeNodes() {
 
   let counter = 0;
   for (let i = 0; i < 360; i += num) {
-    print(i)
     nodes.push(new node(width / 2, height / 2, i, counter));
     counter++;
   }

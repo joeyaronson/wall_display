@@ -87,6 +87,11 @@ function keyPressed() {
     if (newPath === "random") {
       newPath = random(paths);
     }
+    let shuffledPaths = shuffle(paths.filter(x=>x!==newPath && x!== "random")) 
+    shuffledPaths.push(newPath)
+    localStorage.setItem('paths', shuffledPaths);
+    localStorage.setItem('index', -1)
+
     location.href = `./${newPath.replaceAll("_", "")}/index.html`;
   }
 }
