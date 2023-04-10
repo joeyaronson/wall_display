@@ -3,7 +3,7 @@ function setup() {
     colorMode(HSB, 100);
     noStroke();
     hypotenuse = sqrt(width * width + height * height);
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 1000; i++) {
         p.push(new Particle(random(width), random(height)));
     }
 
@@ -50,9 +50,10 @@ function draw() {
         fr = floor(frameRate());
     }
 
-    //   //debug
-    //   // text("particles: "+part,20,30);
-    //   // text("framerate: " +fr,20,60);
+      //debug
+  textSize(50);
+      text("particles: "+part,20,30);
+      text("framerate: " +fr,20,60);
 }
 
 class Particle {

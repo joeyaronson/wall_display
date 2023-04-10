@@ -74,7 +74,7 @@ class Tree {
 		let numBranches = random(2, 4);
 		let branchAngle2 = random(0, 50);
 		let branchWidth = random(this.w / 3, this.w / 1.5);
-		if (this.depth < 4) {
+		if (this.depth < 5) {
 			let angleDif = 120 / numBranches;
 			let startAngle = random(-60, -40);
 			for (let i = 0; i < numBranches; i++) {
@@ -93,7 +93,7 @@ class Tree {
 			}
 		}
 		if (this.depth > 3) {
-			let numFruit = random(0, 4);
+			let numFruit = random(0, 8);
 			for (let i = 0; i < numFruit; i++) {
 				this.fruit.push(
 					new Fruit(

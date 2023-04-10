@@ -47,7 +47,7 @@ function draw() {
   let nOffx = sin(cos(frameCount / 2) * 360) * 20;
   let nOffy = cos(sin(frameCount / 2) * 360) * 20;
 
-  if (frameCount % 16 === 0 && !wait) {
+  if (frameCount % 10 === 0 && !wait) {
     r.unshift(
       new Rec(
         width / 2 + nOffx,

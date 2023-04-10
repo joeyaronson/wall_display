@@ -12,7 +12,7 @@ let g5 = [];
 let g6 = [];
 let prevArr = [];
 
-const SIZE = 20;
+const SIZE = 40;
 let noiseVal = 0.1;
 let noiseVal2 = 0.01;
 const INTERACTION_KEY = 53;

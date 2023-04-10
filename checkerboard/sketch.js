@@ -91,7 +91,7 @@ class Wave {
 
     beginShape();
     vertex(width / 2, 0);
-    for (let i = 0; i < height; i += 15) {
+    for (let i = 0; i < height; i += 5) {
       let d = map(abs(height / 2 - i), 0, height / 2, 360, 10);
 
       vertex(

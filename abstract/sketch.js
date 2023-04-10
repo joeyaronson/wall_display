@@ -51,6 +51,7 @@ const loadRand = () => {
 
 const loadShapes = () => {
     s.push(new Shape(random(width), random(height)));
+    s.push(new Shape(random(width), random(height)));
 };
 let s = [];
 const noiseVal = 0.002;
@@ -67,7 +68,6 @@ function draw() {
     }
 
     if (frameCount % 10000 === 0) {
-        print("Reset");
         modes = shuffle(modes);
         loadRand();
         chooseBackground();

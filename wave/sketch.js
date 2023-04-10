@@ -12,7 +12,7 @@ function setup() {
 let s = [];
 let noiseVal;
 let SPACE = 10;
-let DETAIL = 75;
+let DETAIL = 200;
 let bg;
 let bg1;
 let bg2;

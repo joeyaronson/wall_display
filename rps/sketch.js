@@ -29,7 +29,7 @@ const restart = () => {
 
 const types = ["rock", "paper", "scissors"];
 const typeMap = { rock: "🪨", paper: "📜", scissors: "✂️" };
-let COUNT = 51;
+let COUNT = 99;
 let p = [];
 let finished = false;
 let timer = 0;
@@ -59,7 +59,7 @@ function draw() {
   drawingContext.fillStyle = gradient;
 
   rect(width / 2, height / 2, width, height);
-  textSize(50);
+  textSize(40);
 
   for (let i = 0; i < p.length; i++) {
     p[i].move();
@@ -150,7 +150,7 @@ class Player {
     let collideIndex = -1;
     let enemies = p.filter((x) => x.t !== this.t);
     for (let i = 0; i < enemies.length; i++) {
-      if (dist(enemies[i].x, enemies[i].y, this.x, this.y) < 50) {
+      if (dist(enemies[i].x, enemies[i].y, this.x, this.y) < 40) {
         collideIndex = i;
         break;
       }

@@ -19,7 +19,7 @@ function draw() {
   background(bg, 30, 100);
   camera(600, -20, 100, 0, 0, 0, 0.25, 1, 0.05);
   rotateZ(startAngle);
-  rotateY(frameCount / 10);
+  rotateY(frameCount / 8);
   // orbitControl();
   ambientLight(100, 0, 100);
   pointLight(
@@ -70,7 +70,7 @@ class Cactus {
     this.areoleCount = parseInt(random(5, 20));
     this.ribShape = floor(random(4, 10));
     this.areoleSize = random(2, 5);
-    this.aOffset = random(2, 10);
+    this.aOffset = random(-5, 5);
     // cac colors
     this.hue = random(20, 45);
     this.brightness = random(10, 70);
@@ -103,7 +103,7 @@ class Cactus {
     translate(this.x, this.y);
     for (let i = 0; i < this.ribCount / 2; i++) {
       ambientMaterial(this.hue, 100, this.brightness);
-      ellipsoid(this.w, this.h, this.ribWidth, this.ribShape, 12);
+      ellipsoid(this.w, this.h, this.ribWidth, this.ribShape, 24);
       this.drawAreoles(i);
       rotateY(360 / this.ribCount);
     }
@@ -112,15 +112,15 @@ class Cactus {
     translate(0, this.h - 20);
     ambientMaterial(this.pHue, this.pSat, this.pBri);
 
-    cylinder(this.pW, this.pH, 13, 1);
+    cylinder(this.pW, this.pH, 24, 1);
     translate(0, (this.pH * this.pH2) / 2);
-    cylinder(this.pW / 1.1, this.pH * this.pH2, 13, 1);
+    cylinder(this.pW / 1.1, this.pH * this.pH2, 24, 1);
     //draw soil
     translate(0, -this.pH);
 
     ambientMaterial(8, 40, 20);
 
-    ellipsoid(this.pW - 5, this.pH / 1.2, this.pW - 5, 10, 10);
+    ellipsoid(this.pW - 5, this.pH / 1.2, this.pW - 5, 24, 24);
     pop();
   }
 

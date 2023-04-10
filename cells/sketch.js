@@ -63,8 +63,10 @@ function setup() {
   let t = [];
   let staticCounter = 0;
   let frameBuffer = [];
-  let SIZE = 10;
+  let SIZE = 5;
   const loadTiles = () => {
+	SIZE = random([5, 10]);
+  
 	for (let i = 0, ic = 0; i < width; i += SIZE, ic++) {
 	  let row = [];
 	  for (let j = 0, jc = 0; j < height; j += SIZE, jc++) {
@@ -114,7 +116,6 @@ function setup() {
 	  if (this.o === 1) {
 		fill((this.lifeSpan + frameCount) % 100, 100, 100);
 		rect(this.x, this.y, SIZE, SIZE);
-
 	  }
 	}
   

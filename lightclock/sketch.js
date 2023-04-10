@@ -59,8 +59,6 @@ let timer = 0;
 let interact = false;
 const INTERACTION_KEY = 53;
 function keyPressed() {
-  print(frameRate());
-
   if (keyCode === INTERACTION_KEY) {
     if (interact) {
       timer = 350;
@@ -232,7 +230,7 @@ class Num {
       if (i % 3 === 0) {
         line(currPoint.x, currPoint.y, width / 2, height / 2);
       }
-      stroke((frameCount + this.i * 25) % 100, 50, 100, 5);
+      stroke((frameCount + this.i * 25) % 100, 50, 100, 10);
 
       strokeWeight(3.5);
 

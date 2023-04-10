@@ -71,7 +71,7 @@ function keyPressed() {
 
 const loadPoints = (num, x, y) => {
   return font.textToPoints(String(num), x, y, 1050, {
-    sampleFactor: 0.10,
+    sampleFactor: 0.15,
     simplifyThreshold: 0,
   });
 };

@@ -68,7 +68,7 @@ class Particle {
 }
 
 function loadParticles() {
-  for (let i = 0; i < 360; i += 0.5) {
+  for (let i = 0; i < 360; i += 0.25) {
     p.push(
       new Particle(width / 2 + sin(i) * 200, height / 2 + cos(i) * 200, i)
     );
