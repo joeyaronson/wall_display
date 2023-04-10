@@ -1,8 +1,9 @@
 
 # Keyboard module in Python
 import keyboard
- 
-# press ctrl+shift+z to print "Hotkey Detected"
-keyboard.add_hotkey('ctrl + shift + z', print, args =('Hotkey', 'Detected'))
- 
+  
+# press a to print rk
+keyboard.add_hotkey('a', lambda: keyboard.write('Geek'))
+keyboard.add_hotkey('ctrl + shift + a', print, args =('you entered', 'hotkey'))
+  
 keyboard.wait('esc')
