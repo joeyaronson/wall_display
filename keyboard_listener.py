@@ -1,13 +1,28 @@
 from pynput import keyboard
 
-def function_1():
-    print('Function 1 activated')
+print("test ")
+# The key combination to check
+COMBINATIONS = [
+    {keyboard.Key.shift, keyboard.KeyCode(char='a')},
+    {keyboard.Key.shift, keyboard.KeyCode(char='A')}
+]
 
-def function_2():
-    print('Function 2 activated')
+# The currently active modifiers
+current = set()
 
-with keyboard.GlobalHotKeys({
-        '<alt>+<ctrl>+r': function_1,
-        '<alt>+<ctrl>+t': function_1,
-        '<alt>+<ctrl>+y': function_2}) as h:
-    h.join()
+def execute():
+    print ("Do Something")
+
+def on_press(key):
+    print("Test")
+    if any([key in COMBO for COMBO in COMBINATIONS]):
+        current.add(key)
+        if any(all(k in current for k in COMBO) for COMBO in COMBINATIONS):
+            execute()
+
+def on_release(key):
+    if any([key in COMBO for COMBO in COMBINATIONS]):
+        current.remove(key)
+
+with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
