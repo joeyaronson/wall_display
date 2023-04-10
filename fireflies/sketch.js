@@ -51,9 +51,9 @@ function draw() {
     }
 
       //debug
-  textSize(50);
-      text("particles: "+part,20,30);
-      text("framerate: " +fr,20,60);
+//   textSize(50);
+//       text("particles: "+part,20,30);
+//       text("framerate: " +fr,20,60);
 }
 
 class Particle {
