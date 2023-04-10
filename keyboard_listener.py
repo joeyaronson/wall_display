@@ -4,6 +4,6 @@ import os
 import keyboard
   
 # press a to print rk
-keyboard.add_hotkey('ctrl + shift + a', lambda: os.system("export DISPLAY=:0;/home/joey/wall_display/start.sh"))
+keyboard.add_hotkey('ctrl + shift + a', lambda: os.system("chromium-browser --kiosk --allow-file-access-from-files --disable-infobar ~/wall_display/home.html"))
   
 keyboard.wait('esc')
