@@ -4,7 +4,7 @@ export DISPLAY=:0;
 if [ $# -eq 0 ]
   then
     echo "running home"
-    kill_chrome
+    pkill -o chromium
     chromium-browser --kiosk --allow-file-access-from-files --disable-infobar ~/wall_display/home.html
 else
     echo "running $1"
