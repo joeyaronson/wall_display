@@ -112,7 +112,7 @@ function draw() {
     line(offset, height, offset, heightOff);
     text(buttons[i], offset, heightOff - 15);
   }
-  if (keyCooloff > 2) {
+  if (keyCooloff >5) {
     if (keyIsDown(RIGHT_KEY)) {
       activeIndex = (activeIndex + 1) % p.length;
     } else if (keyIsDown(LEFT_KEY)) {
