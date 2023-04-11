@@ -12,7 +12,7 @@ let n = [];
 let m;
 let mtemp;
 let dh;
-let nodeCount = 4000;
+let nodeCount = 3000;
 let noiseVal = 0.01;
 let wobble;
 let colorModes = ["rainbow", "black", "hue"];
@@ -25,8 +25,6 @@ const restart = () => {
   noiseVal = random(0.01, 0.04);
   wobble = random(0.25, 2);
   colorModes = shuffle(colorModes);
-  print({ noiseVal });
-  print({ wobble });
 };
 
 const INTERACTION_KEY = 53;
