@@ -20,6 +20,7 @@ const paths = [
   "hallway",
   "hills",
   "hypercube",
+  "iris",
   "light_clock",
   "mandala",
   "mandala3D",
