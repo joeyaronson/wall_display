@@ -31,6 +31,7 @@ const paths = [
   "rhombus",
   "rps",
   "sin_wave",
+  "supernova",
   "swarm",
   "swarm_clock",
   "tiedye",
@@ -88,7 +89,7 @@ function keyPressed() {
     if (newPath === "random") {
       newPath = random(paths);
     }
-    let shuffledPaths = shuffle(paths.filter(x=>x!==newPath && x!== "random")) 
+    let shuffledPaths = shuffle(paths.filter(x => x !== newPath && x !== "random"))
     shuffledPaths.push(newPath)
     localStorage.setItem('paths', shuffledPaths);
     localStorage.setItem('index', -1)
@@ -113,7 +114,7 @@ function draw() {
     line(offset, height, offset, heightOff);
     text(buttons[i], offset, heightOff - 15);
   }
-  if (keyCooloff >5) {
+  if (keyCooloff > 5) {
     if (keyIsDown(RIGHT_KEY)) {
       activeIndex = (activeIndex + 1) % p.length;
     } else if (keyIsDown(LEFT_KEY)) {

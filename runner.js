@@ -31,6 +31,7 @@ const paths = [
     "rhombus",
     "rps",
     "sin_wave",
+    "supernova",
     "swarm",
     "swarm_clock",
     "tiedye",
