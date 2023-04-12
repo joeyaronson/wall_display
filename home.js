@@ -45,11 +45,11 @@ const paths = [
 ];
 let p = [];
 
-let w = 500;
+let w = 300;
 let h = 60;
 let keyCooloff = 0;
 let activeIndex = 0;
-const padding = 80;
+const padding = 100;
 
 const buttons = ["reboot", "home", "previous", "next", "select"];
 function setup() {
@@ -58,21 +58,25 @@ function setup() {
   textAlign(CENTER, CENTER);
   colorMode(HSB, 100);
 
+
   createCanvas(1080, 1920);
   paths.push("random")
   loadPages();
+  drawingContext.shadowOffsetX = 5;
+  drawingContext.shadowOffsetY = 5;
+  drawingContext.shadowBlur = 20;
 }
 
 const loadPages = () => {
   let row = 0;
 
   for (let i = 0; i < paths.length; i++) {
-    if (i % 2 === 0 && i > 0) {
+    if (i % 3 === 0 && i > 0) {
       row++;
     }
     p.push(
       new Page(
-        (width / 4 + (i * width) / 2) % width,
+        (width / 6 + (i * width) / 3) % width,
         50 + row * padding,
         paths[i],
         i
@@ -100,6 +104,7 @@ function keyPressed() {
 }
 
 function draw() {
+  drawingContext.shadowColor = "black";
   background(59, 22, 60);
   textAlign(CENTER, CENTER);
   for (let page of p) {
@@ -108,7 +113,7 @@ function draw() {
   textSize(18);
   stroke(59, 22, 30);
   fill(59, 22, 30);
-
+  drawingContext.shadowColor = "#00000000";
   for (let i = 0; i < buttons.length; i++) {
     let offset = 350 + i * 85;
     let heightOff = height - (i % 2 === 0 ? 60 : 80);
