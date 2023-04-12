@@ -48,7 +48,7 @@ draw = () => {
   // ambientLight(60);
   camera(
     sin(frameCount) * CAMERA_MULTIPLIER +
-      cos(frameCount * 1.1) * CAMERA_MULTIPLIER,
+    cos(frameCount * 1.1) * CAMERA_MULTIPLIER,
     (cos(frameCount * 0.9) * CAMERA_MULTIPLIER) / 6,
     CAMERA_MULTIPLIER,
     0,
@@ -78,6 +78,10 @@ draw = () => {
     c[i].display();
   }
   fc++;
+
+  if (fc % 2000 === 0) {
+    restart()
+  }
 };
 
 class Cube {
@@ -103,7 +107,7 @@ class Cube {
       noFill();
       stroke((d * 2 + fc + colOff) % 360, 360, 360);
     } else if (currDrawMode === "hue") {
-      fill(fc % 360, 360, (d * 2 + fc + colOff) % 360);
+      fill(fc % 360, 360, sin(d * 2 + fc + colOff) * 360 % 360);
     }
 
     box(SIZE - ((off - 1) * m * width) / 8);
