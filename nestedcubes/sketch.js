@@ -6,7 +6,7 @@ setup = () => {
   // noStroke();
   // strokeWeight(0.5);
   colorMode(HSB, 360);
-  SIZE = width / 60;
+  SIZE = width / 45;
   loadCubes();
 
   restart();
@@ -17,7 +17,7 @@ let fc = 0;
 let colOff;
 const CAMERA_MULTIPLIER = 600;
 
-let count = 8;
+let count = 6;
 
 const drawModes = ["fill", "transparent", "stroke", "hue"];
 
