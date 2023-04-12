@@ -25,6 +25,7 @@ const paths = [
   "mandala",
   "mandala3D",
   "mondrian",
+  "nested_cubes",
   "orb",
   "rainbow",
   "recurse",
