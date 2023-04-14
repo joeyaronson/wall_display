@@ -6,7 +6,7 @@ function setup() {
   angleMode(DEGREES);
   noStroke();
   flock = new Flock();
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 200; i++) {
     let b = new Boid(random(width), random(height));
     flock.add(b);
   }
@@ -153,7 +153,7 @@ class Boid {
     this.acceleration = createVector(0, 0);
     this.velocity = createVector(random(-5, 5), random(-5, 5));
     this.position = createVector(x, y);
-    this.size = random(3, 7);
+    this.size = random(3, 10);
     this.maxspeed = 3; // Maximum speed
     this.maxforce = 0.05; // Maximum steering force
     this.col = random(100);
