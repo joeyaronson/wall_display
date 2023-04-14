@@ -222,7 +222,7 @@ class Boid {
     translate(this.position.x, this.position.y);
     rotate(theta);
     let flapMult =
-      sin(((frameCount + this.flapOff) * this.velocity.heading()) / 60) *
+      sin(((frameCount + this.flapOff) * this.velocity.heading()) / 100) *
       this.size;
     beginShape();
     vertex(0, -this.size * 2); //TIP
