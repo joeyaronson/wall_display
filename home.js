@@ -2,6 +2,7 @@ const paths = [
   "abstract",
   "arc_clock",
   "balls",
+  "birds",
   "boxes",
   "cacti",
   "cell_clock",
