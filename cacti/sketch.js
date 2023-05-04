@@ -8,54 +8,53 @@ function setup() {
   minute = 1000 * 60;
   currentMin = Math.round(Date.now() / minute);
 }
-let c;
+let c = [];
 let startAngle;
 let minute;
 let startMin;
 let bg;
-const INTERACTION_KEY = 53;
-
 function draw() {
-  background(bg, 30, 100);
+  background(70, 30, 100);
   camera(600, -20, 100, 0, 0, 0, 0.25, 1, 0.05);
-  rotateZ(startAngle);
-  rotateY(frameCount / 8);
-  // orbitControl();
+
+  rotateY(frameCount);
+  rotateZ(sin(startAngle + frameCount) * 10);
+
   ambientLight(100, 0, 100);
   pointLight(
     100,
     100 / 4,
-    width,
-    (sin(frameCount * 2) * width) / 4,
-    (cos(frameCount * 2) * width) / 4,
-    width / 5
+    100 / 2,
+    (sin(frameCount) * width) / 4,
+    (cos(frameCount) * width) / 4,
+    width / 10
   );
-  // pointLight(
-  //   100,
-  //   100 / 4,
-  //   100 / 2,
-  //   (-sin(frameCount) * width) / 4,
-  //   (-cos(frameCount) * width) / 4,
-  //   0
-  //   );
-  c.draw();
-  let minutes = Math.round(Date.now() / minute);
-  if (currentMin !== minutes) {
-    loadCacti();
-    currentMin = minutes;
+  pointLight(
+    100,
+    100 / 4,
+    100 / 2,
+    (-sin(frameCount) * width) / 4,
+    (-cos(frameCount) * width) / 4,
+    0
+  );
+
+  for (let cactus of c) {
+    cactus.draw();
   }
 }
 
 function loadCacti() {
-  bg = random(0, 100);
-  c = new Cactus(0, 0);
+  for (let i = 0; i < 1; i++) {
+    c.push(new Cactus((i * width) / 5, 0));
+  }
   startAngle = random(0, 20);
+
+  bg = random(0, 100);
 }
 
 function keyPressed() {
-  if (keyCode === INTERACTION_KEY) {
-    loadCacti();
-  }
+  c = [];
+  loadCacti();
 }
 
 class Cactus {
@@ -63,17 +62,16 @@ class Cactus {
     //cac vars
     this.x = x;
     this.y = y;
-    this.h = random(60, 220);
+    this.h = random(60, 250);
     this.w = random(40, 70);
-    this.ribWidth = random(10, 40);
-    this.ribCount = parseInt(random(2, 5)) * 2;
+    this.ribWidth = random(10, 35);
+    this.ribCount = parseInt(random(2, 6)) * 2;
     this.areoleCount = parseInt(random(5, 20));
-    this.ribShape = floor(random(4, 10));
     this.areoleSize = random(2, 5);
-    this.aOffset = random(-5, 5);
+    this.aOffset = random(2, 10);
     // cac colors
-    this.hue = random(20, 45);
-    this.brightness = random(10, 70);
+    this.hue = random(20, 50);
+    this.brightness = random(30, 70);
     // areole colors
     this.aHue = random(5, 10);
     this.aSat = random(0, 100);
@@ -81,7 +79,7 @@ class Cactus {
 
     //pot vars
     this.pW = this.w + random(20, 50);
-    this.pH = random(30, 50);
+    this.pH = random(30, 60);
 
     this.pH2 = random(1.5, 2.5);
 
@@ -90,8 +88,8 @@ class Cactus {
     this.pBri = random(35, 45);
 
     //spine vars
-    this.spineLen = random(2, 25);
-    this.spineCount = floor(random(0, 6));
+    this.spineLen = random(2, 30);
+    this.spineCount = floor(random(0, 10));
     this.spineStartAngle = random(0, 360);
 
     this.sHue = random(0, 20);
@@ -101,9 +99,10 @@ class Cactus {
   draw() {
     push();
     translate(this.x, this.y);
+    let aOffsetToggle = 0;
     for (let i = 0; i < this.ribCount / 2; i++) {
       ambientMaterial(this.hue, 100, this.brightness);
-      ellipsoid(this.w, this.h, this.ribWidth, this.ribShape, 24);
+      ellipsoid(this.w, this.h, this.ribWidth);
       this.drawAreoles(i);
       rotateY(360 / this.ribCount);
     }
@@ -112,15 +111,16 @@ class Cactus {
     translate(0, this.h - 20);
     ambientMaterial(this.pHue, this.pSat, this.pBri);
 
-    cylinder(this.pW, this.pH, 24, 1);
+    cylinder(this.pW, this.pH);
     translate(0, (this.pH * this.pH2) / 2);
-    cylinder(this.pW / 1.1, this.pH * this.pH2, 24, 1);
+    cylinder(this.pW / 1.1, this.pH * this.pH2);
     //draw soil
     translate(0, -this.pH);
 
     ambientMaterial(8, 40, 20);
+    // cylinder(this.pW - 10,this.pH);
 
-    ellipsoid(this.pW - 5, this.pH / 1.2, this.pW - 5, 24, 24);
+    ellipsoid(this.pW - 5, this.pH / 1.2, this.pW - 5);
     pop();
   }
 
@@ -129,7 +129,7 @@ class Cactus {
       push();
 
       let offToggle = i % 2 === 0 ? this.aOffset : 0;
-      let aX = (this.w - this.areoleSize / 1.5) * cos(angle + offToggle);
+      let aX = (this.w - this.areoleSize / 2) * cos(angle + offToggle);
       let aY = this.h * sin(angle + offToggle);
       translate(aX, aY);
       let aSize = map(
@@ -139,6 +139,7 @@ class Cactus {
         1,
         this.areoleSize
       );
+
       ambientMaterial(this.aHue, this.aSat, this.aBri);
       sphere(aSize);
       //spines
