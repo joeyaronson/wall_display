@@ -41,9 +41,15 @@ function draw() {
   for (let cactus of c) {
     cactus.draw();
   }
+  let minutes = Math.round(Date.now() / minute);
+  if (currentMin !== minutes) {
+    loadCacti();
+    currentMin = minutes;
+  }
 }
 
 function loadCacti() {
+  c = [];
   for (let i = 0; i < 1; i++) {
     c.push(new Cactus((i * width) / 5, 0));
   }
@@ -53,7 +59,6 @@ function loadCacti() {
 }
 
 function keyPressed() {
-  c = [];
   loadCacti();
 }
 
