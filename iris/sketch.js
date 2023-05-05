@@ -54,6 +54,10 @@ function setup() {
 	  circ(width / 2, height / 2, newR - r, 270, sp);
 	  globalFrame++;
 	}
+
+	if(frameCount % 10000 === 0){
+		restart()
+	}
   }
   
   function circ(x, y, r, a, s) {
