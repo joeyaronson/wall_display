@@ -230,8 +230,10 @@ class Ball {
       this.flipX();
     }
     if (this.y < halfW) {
+      this.y += halfW;
       this.flipY();
     } else if (this.y > height - halfW) {
+      this.y += halfW;
       this.flipY();
     }
   }
