@@ -4,6 +4,7 @@ const paths = [
   "balls",
   "birds",
   "boxes",
+  "brickbreak",
   "cacti",
   "cell_clock",
   "cells",
