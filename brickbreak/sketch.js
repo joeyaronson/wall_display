@@ -1,8 +1,10 @@
 function setup() {
   angleMode(DEGREES);
   rectMode(CENTER);
+  colorMode(HSB, 255);
   noStroke();
   createCanvas(1080, 1920);
+  background(0);
   restart();
 }
 
@@ -15,12 +17,12 @@ const restart = () => {
     b1.push(
       new Ball(
         random(SIZE, width - SIZE),
-        random(height / 2, height - SIZE),
+        random(height / 2 + height / 4, height - SIZE),
         "white"
       )
     );
     b1.push(
-      new Ball(random(SIZE, width - SIZE), random(SIZE, height / 2), "black")
+      new Ball(random(SIZE, width - SIZE), random(SIZE, height / 4), "black")
     );
   }
   for (let i = 0; i < width / SIZE; i++) {
@@ -46,11 +48,12 @@ let b1 = [];
 
 let br = [];
 let SPEEDMULT = 8;
-let SIZE = 40;
+let SIZE = 30;
 let colorCount = 200;
-let r, g, b;
 let black, white, black2, white2;
 let tblack, twhite, tblack2, twhite2;
+
+let whitev, blackv, whitev2, blackv2;
 function draw() {
   displayBricks();
   displayBalls();
@@ -63,6 +66,7 @@ function draw() {
     shiftColors();
     chooseSecondaryColors();
   }
+  // noLoop();
 }
 
 const shiftColors = () => {
@@ -73,19 +77,21 @@ const shiftColors = () => {
 };
 
 const chooseColors = () => {
-  r = random(255);
-  g = random(255);
+  let h, s, b;
+
+  h = random(255);
+  s = random(255);
   b = random(255);
-  let blackv = [
-    (r + random(30, 225)) % 255,
-    (g + random(30, 225)) % 255,
+  blackv = [
+    (h + random(30, 225)) % 255,
+    (s + random(30, 225)) % 255,
     (b + random(30, 225)) % 255,
   ];
   black = color(...blackv);
   tblack = color(...blackv, 70);
-  let whitev = [
-    (r + random(30, 225)) % 255,
-    (g + random(30, 225)) % 255,
+  whitev = [
+    (h + random(30, 225)) % 255,
+    (s + random(30, 225)) % 255,
     (b + random(30, 225)) % 255,
   ];
   white = color(...whitev);
@@ -93,19 +99,20 @@ const chooseColors = () => {
 };
 
 const chooseSecondaryColors = () => {
-  r = random(255);
-  g = random(255);
+  let h, s, b;
+  h = random(255);
+  s = random(255);
   b = random(255);
-  let blackv = [
-    (r + random(30, 225)) % 255,
-    (g + random(30, 225)) % 255,
+  blackv2 = [
+    (h + random(30, 225)) % 255,
+    (s + random(30, 225)) % 255,
     (b + random(30, 225)) % 255,
   ];
   black2 = color(...blackv);
   tblack2 = color(...blackv, 70);
-  let whitev = [
-    (r + random(30, 225)) % 255,
-    (g + random(30, 225)) % 255,
+  whitev2 = [
+    (h + random(30, 225)) % 255,
+    (s + random(30, 225)) % 255,
     (b + random(30, 225)) % 255,
   ];
   white2 = color(...whitev);
@@ -131,9 +138,12 @@ class Ball {
     this.y = y;
     this.w = SIZE / 2;
     this.mode = mode;
-    this.sa = random(0, 360);
-    this.sx = sin(this.sa) * SPEEDMULT;
-    this.sy = cos(this.sa) * SPEEDMULT;
+    let startAngle;
+    do {
+      startAngle = random(0, 360);
+    } while (startAngle % 90 < 20);
+    this.sx = sin(startAngle) * SPEEDMULT;
+    this.sy = cos(startAngle) * SPEEDMULT;
   }
   display() {
     if (this.mode === "black") {
@@ -169,34 +179,59 @@ class Ball {
     let filtered = br.filter((x) => x.mode !== ignore);
     for (let brick of filtered) {
       if (
-        (abs(x1 - brick.x) < SPEEDMULT / 2 &&
-          this.y + this.w / 2 > brick.y - brick.w / 2 &&
-          this.y - this.w / 2 < brick.y + brick.w / 2) ||
-        (abs(x2 - brick.x) < SPEEDMULT / 2 &&
-          this.y + this.w / 2 > brick.y - brick.w / 2 &&
-          this.y - this.w / 2 < brick.y + brick.w / 2)
+        abs(y1 - brick.y) < SPEEDMULT / 2 &&
+        this.x + this.w / 2 > brick.x - brick.w / 2 &&
+        this.x - this.w / 2 < brick.x + brick.w / 2
       ) {
+        this.y += this.w;
+        this.flipY();
+        brick.flipColor();
+        break;
+      }
+      if (
+        abs(y2 - brick.y) < SPEEDMULT / 2 &&
+        this.x + this.w / 2 > brick.x - brick.w / 2 &&
+        this.x - this.w / 2 < brick.x + brick.w / 2
+      ) {
+        this.y -= this.w;
+
+        this.flipY();
+        brick.flipColor();
+        break;
+      }
+      if (
+        abs(x1 - brick.x) < SPEEDMULT / 2 &&
+        this.y + this.w / 2 > brick.y - brick.w / 2 &&
+        this.y - this.w / 2 < brick.y + brick.w / 2
+      ) {
+        this.x -= this.w;
         this.flipX();
         brick.flipColor();
         break;
       }
       if (
-        (abs(y1 - brick.y) < SPEEDMULT / 2 &&
-          this.x + this.w / 2 > brick.x - brick.w / 2 &&
-          this.x - this.w / 2 < brick.x + brick.w / 2) ||
-        (abs(y2 - brick.y) < SPEEDMULT / 2 &&
-          this.x + this.w / 2 > brick.x - brick.w / 2 &&
-          this.x - this.w / 2 < brick.x + brick.w / 2)
+        abs(x2 - brick.x) < SPEEDMULT / 2 &&
+        this.y + this.w / 2 > brick.y - brick.w / 2 &&
+        this.y - this.w / 2 < brick.y + brick.w / 2
       ) {
-        this.flipY();
+        this.x += this.w;
+
+        this.flipX();
         brick.flipColor();
         break;
       }
     }
-    if (this.x < halfW || this.x > width - halfW) {
+
+    if (this.x < halfW) {
+      this.x += halfW;
+      this.flipX();
+    } else if (this.x > width - halfW) {
+      this.x -= halfW;
       this.flipX();
     }
-    if (this.y < halfW || this.y > height - halfW) {
+    if (this.y < halfW) {
+      this.flipY();
+    } else if (this.y > height - halfW) {
       this.flipY();
     }
   }
