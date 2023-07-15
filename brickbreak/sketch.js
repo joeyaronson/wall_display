@@ -61,7 +61,7 @@ function draw() {
     colorCount++;
   }
 
-  if (frameCount % 2000 === 0) {
+  if (frameCount % 1000 === 0) {
     colorCount = 0;
     shiftColors();
     chooseSecondaryColors();
@@ -108,15 +108,15 @@ const chooseSecondaryColors = () => {
     (s + random(30, 225)) % 255,
     (b + random(30, 225)) % 255,
   ];
-  black2 = color(...blackv);
-  tblack2 = color(...blackv, 70);
+  black2 = color(...blackv2);
+  tblack2 = color(...blackv2, 70);
   whitev2 = [
     (h + random(30, 225)) % 255,
     (s + random(30, 225)) % 255,
     (b + random(30, 225)) % 255,
   ];
-  white2 = color(...whitev);
-  twhite2 = color(...whitev, 70);
+  white2 = color(...whitev2);
+  twhite2 = color(...whitev2, 70);
 };
 
 const displayBalls = () => {
