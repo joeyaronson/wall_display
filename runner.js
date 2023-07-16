@@ -40,6 +40,7 @@ const paths = [
     "tiedye",
     "tiles",
     "tile_wave",
+    "topography",
     "tree",
     "void",
     "wave",
