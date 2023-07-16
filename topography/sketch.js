@@ -44,7 +44,7 @@ function setup() {
 	background((frameCount / 10) % 100, 20, 100);
 	colorMode(RGB);
 	ambientLight(250, 250, 250);
-	directionalLight(200, 200, 200, -1, 0.75, -1);
+	// directionalLight(200, 200, 200, -1, 0.75, -1);
 	colorMode(HSB, 100);
   
 	rotateX(45);
