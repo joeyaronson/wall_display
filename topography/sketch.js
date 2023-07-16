@@ -14,7 +14,7 @@ function setup() {
 		  new Tile(
 			(-COUNT / 2) * SIZE + i * SIZE,
 			(-COUNT / 2) * SIZE + j * SIZE,
-			-300,
+			-100,
 			i + j
 		  )
 		);
@@ -48,15 +48,15 @@ function setup() {
 	rotateX(45);
 	rotateZ(frameCount / 8);
 	// directionalLight(255, 255, 255, 1, 1, -1);
-	directionalLight(20, 20, 20, 1, -1, -1);
-	// directionalLight(255, 255, 255, -1, -1, -1);
+  //   directionalLight(20, 20, 20, 1, -1, -1);
+  //   directionalLight(255, 255, 255, -1, -1, -1);
 	colorMode(HSB, 100);
   
 	for (let tile of t) {
 	  tile.display();
 	}
   }
-  let SIZE = 31;
+  let SIZE = 28;
   let COUNT = 25;
   
   class Tile {
@@ -82,7 +82,7 @@ function setup() {
 	  if (h < 400) {
 		colOff = map(h, 0, 400, 100, 0);
   
-		emissiveMaterial(55, 100, 100 - colOff, 40);
+		emissiveMaterial(55, 100, 100 - colOff, 50);
 		push();
 		let oceanZ = h - 400;
 		let oceanOff = h / 2;
