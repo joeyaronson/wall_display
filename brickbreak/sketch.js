@@ -13,7 +13,7 @@ const restart = () => {
   br = [];
   chooseColors();
   chooseSecondaryColors();
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     b1.push(
       new Ball(
         random(SIZE, width - SIZE),
@@ -148,9 +148,9 @@ class Ball {
   }
 
   move() {
-    this.checkBounds();
     this.x += this.sx;
     this.y += this.sy;
+    this.checkBounds();
   }
 
   flipX() {
@@ -163,52 +163,121 @@ class Ball {
 
   checkBounds() {
     let halfW = this.w / 2;
+    //chaotic collision
+    //     let x1 = this.x - halfW;
+    //     let x2 = this.x + halfW;
+    //     let y1 = this.y - halfW;
+    //     let y2 = this.y + halfW;
+    //     let ignore = this.mode === "black" ? "black" : "white";
+    //     let filtered = br.filter((x) => x.mode !== ignore);
+    //     for (let brick of filtered) {
+    //       if (
+    //         abs(y1 - brick.y) < SPEEDMULT / 2 &&
+    //         this.x + this.w / 2 > brick.x - brick.w / 2 &&
+    //         this.x - this.w / 2 < brick.x + brick.w / 2
+    //       ) {
+    //         this.y += this.w;
+    //         this.flipY();
+    //         brick.flipColor();
+    //         break;
+    //       }
+    //       if (
+    //         abs(y2 - brick.y) < SPEEDMULT / 2 &&
+    //         this.x + this.w / 2 > brick.x - brick.w / 2 &&
+    //         this.x - this.w / 2 < brick.x + brick.w / 2
+    //       ) {
+    //         this.y -= this.w;
 
-    let x1 = this.x - halfW;
-    let x2 = this.x + halfW;
-    let y1 = this.y - halfW;
-    let y2 = this.y + halfW;
+    //         this.flipY();
+    //         brick.flipColor();
+    //         break;
+    //       }
+    //       if (
+    //         abs(x1 - brick.x) < SPEEDMULT / 2 &&
+    //         this.y + this.w / 2 > brick.y - brick.w / 2 &&
+    //         this.y - this.w / 2 < brick.y + brick.w / 2
+    //       ) {
+    //         this.x -= this.w;
+    //         this.flipX();
+    //         brick.flipColor();
+    //         break;
+    //       }
+    //       if (
+    //         abs(x2 - brick.x) < SPEEDMULT / 2 &&
+    //         this.y + this.w / 2 > brick.y - brick.w / 2 &&
+    //         this.y - this.w / 2 < brick.y + brick.w / 2
+    //       ) {
+    //         this.x += this.w;
+
+    //         this.flipX();
+    //         brick.flipColor();
+    //         break;
+    //       }
+    //     }
+
+    let left = this.x - halfW;
+    let right = this.x + halfW;
+    let up = this.y - halfW;
+    let down = this.y + halfW;
     let ignore = this.mode === "black" ? "black" : "white";
     let filtered = br.filter((x) => x.mode !== ignore);
     for (let brick of filtered) {
-      if (
-        abs(y1 - brick.y) < SPEEDMULT / 2 &&
-        this.x + this.w / 2 > brick.x - brick.w / 2 &&
-        this.x - this.w / 2 < brick.x + brick.w / 2
-      ) {
-        this.y += this.w;
-        this.flipY();
-        brick.flipColor();
-        break;
-      }
-      if (
-        abs(y2 - brick.y) < SPEEDMULT / 2 &&
-        this.x + this.w / 2 > brick.x - brick.w / 2 &&
-        this.x - this.w / 2 < brick.x + brick.w / 2
-      ) {
-        this.y -= this.w;
+      const brickX = brick.x;
+      const brickY = brick.y;
+      const brickW = brick.w;
+      const halfBrick = brickW / 2;
+      const [brickLeft, brickRight, brickUp, brickDown] = [
+        brickX - halfBrick,
+        brickX + halfBrick,
+        brickY - halfBrick,
+        brickY + halfBrick,
+      ];
 
+      // if (left < brickRight && this.y > brickDown && this.y < brickUp) {
+      //   this.x = brickRight + halfW;
+      //   this.flipX();
+      //   this.flipColor();
+      //   break;
+      // }
+
+      if (
+        right > brickLeft &&
+        left < brickRight &&
+        abs(down - brickUp) < SPEEDMULT / 2
+      ) {
+        this.y = brickUp - halfW;
         this.flipY();
         brick.flipColor();
         break;
       }
       if (
-        abs(x1 - brick.x) < SPEEDMULT / 2 &&
-        this.y + this.w / 2 > brick.y - brick.w / 2 &&
-        this.y - this.w / 2 < brick.y + brick.w / 2
+        right > brickLeft &&
+        left < brickRight &&
+        abs(up - brickDown) < SPEEDMULT / 2
       ) {
-        this.x -= this.w;
+        this.y = brickDown + halfW;
+        this.flipY();
+        brick.flipColor();
+        break;
+      }
+
+      if (
+        up < brickDown &&
+        down > brickUp &&
+        abs(right - brickLeft) < SPEEDMULT / 2
+      ) {
+        this.x = brickLeft - halfW;
         this.flipX();
         brick.flipColor();
         break;
       }
-      if (
-        abs(x2 - brick.x) < SPEEDMULT / 2 &&
-        this.y + this.w / 2 > brick.y - brick.w / 2 &&
-        this.y - this.w / 2 < brick.y + brick.w / 2
-      ) {
-        this.x += this.w;
 
+      if (
+        up < brickDown &&
+        down > brickUp &&
+        abs(left - brickRight) < SPEEDMULT / 2
+      ) {
+        this.x = brickRight + halfW;
         this.flipX();
         brick.flipColor();
         break;
@@ -216,17 +285,17 @@ class Ball {
     }
 
     if (this.x < halfW) {
-      this.x += halfW;
+      this.x = halfW;
       this.flipX();
     } else if (this.x > width - halfW) {
-      this.x -= halfW;
+      this.x = width - halfW;
       this.flipX();
     }
     if (this.y < halfW) {
-      this.y += halfW;
+      this.y = halfW;
       this.flipY();
     } else if (this.y > height - halfW) {
-      this.y -= halfW;
+      this.y = height - halfW;
       this.flipY();
     }
   }
@@ -237,10 +306,12 @@ class Brick {
     this.x = x;
     this.y = y;
     this.mode = mode;
+    this.next = mode;
     this.w = SIZE;
   }
 
   display() {
+    this.mode = this.next;
     if (this.mode === "black") {
       fill(lerpColor(twhite, twhite2, map(colorCount, 0, 100, 0, 1)));
     } else {
@@ -250,6 +321,6 @@ class Brick {
   }
 
   flipColor() {
-    this.mode = this.mode === "black" ? "white" : "black";
+    this.next = this.mode === "black" ? "white" : "black";
   }
 }
