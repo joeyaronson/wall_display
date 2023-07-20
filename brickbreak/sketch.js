@@ -82,13 +82,10 @@ const chooseColors = () => {
   h = random(255);
   s = random(255);
   b = random(255);
-  blackv = [
-    (h + random(30, 225)) % 255,
-    (s + random(30, 225)) % 255,
-    (b + random(30, 225)) % 255,
-  ];
+  blackv = [h, s, b];
   black = color(...blackv);
   tblack = color(...blackv, 70);
+
   whitev = [
     (h + random(30, 225)) % 255,
     (s + random(30, 225)) % 255,
@@ -103,11 +100,7 @@ const chooseSecondaryColors = () => {
   h = random(255);
   s = random(255);
   b = random(255);
-  blackv2 = [
-    (h + random(30, 225)) % 255,
-    (s + random(30, 225)) % 255,
-    (b + random(30, 225)) % 255,
-  ];
+  blackv2 = [h, s, b];
   black2 = color(...blackv2);
   tblack2 = color(...blackv2, 70);
   whitev2 = [
