@@ -76,7 +76,7 @@ function setup() {
 	  this.z = z;
 	  this.tail = [];
 	  this.chooseNewDir();
-	  this.maxLen = floor(random(10, 70));
+	  this.maxLen = floor(random(10, 50));
 	  this.life = random(200, 500);
 	  this.dead = false;
 	  this.colStart = random(100);
