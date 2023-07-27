@@ -10,6 +10,7 @@ const paths = [
   "cells",
   "checkerboard",
   "cubes",
+  "cubesnake",
   "drip",
   "exclusion",
   "eye",
