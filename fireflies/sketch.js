@@ -39,10 +39,10 @@ function draw() {
     globalColor += 0.5;
     fill(100);
     textSize(10);
-    if (fr < 10) {
+    if (fr < 20) {
         p.splice(0, 1);
     }
-    if (fr > 20) {
+    if (fr > 50) {
         p.push(new Particle(random(width), random(height)));
     }
     if (frameCount % 10 == 0) {
