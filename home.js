@@ -26,6 +26,7 @@ const paths = [
   "iris",
   "light_clock",
   "mandala",
+  "mandala2.0",
   "mandala3D",
   "mondrian",
   "nested_cubes",
